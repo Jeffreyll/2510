@@ -8,6 +8,22 @@
       </van-col>
     </van-row>
     <!-- 分类 -->
+    <div class="middle-wrap">
+      <van-sidebar v-model="activeKey">
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+        <van-sidebar-item title="标签名称" />
+      </van-sidebar>
+      <div class="right">you</div>
+    </div>
   </div>
 </template>
 
@@ -15,10 +31,14 @@
 export default {
   data() {
     return {
-      category: [],
+      activeKey: 0,// 当前选中项的索引
+      categoryList: [],
     };
   },
   methods: {},
+  created(){
+
+  },
 };
 </script>
 
@@ -26,8 +46,9 @@ export default {
 .about {
   height: 100%;
   background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
 }
-.about .van-row
 .about .van-row .header {
   height: 38.5px;
   padding: 0 12px;
@@ -43,5 +64,28 @@ export default {
   color: rgb(51, 51, 51);
   text-indent: 132px;
   font-size: 16px;
+}
+
+.middle-wrap {
+  flex: 1;
+  overflow: scroll;
+  display: flex;
+  margin-bottom: 1.19rem;
+}
+.van-sidebar::-webkit-scrollbar {
+    display: none;
+}
+/* 左侧导航 */
+.middle-wrap .van-sidebar .van-sidebar-item{
+  
+}
+.middle-wrap .van-sidebar .van-sidebar-item--select{
+
+}
+
+/* 右侧展示商品 */
+.middle-wrap .right{
+  flex: 1;
+  background: coral;
 }
 </style>
