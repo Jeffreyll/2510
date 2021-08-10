@@ -10,17 +10,15 @@
     <!-- 分类 -->
     <div class="middle-wrap">
       <van-sidebar v-model="activeKey">
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
-        <van-sidebar-item title="标签名称" />
+        <li>
+          <van-sidebar-item title="标签名称" />
+        </li>
+        <li>
+          <van-sidebar-item title="标签名称" />
+        </li>
+        <li>
+          <van-sidebar-item title="标签名称" />
+        </li>
       </van-sidebar>
       <div class="right">you</div>
     </div>
@@ -31,14 +29,12 @@
 export default {
   data() {
     return {
-      activeKey: 0,// 当前选中项的索引
+      activeKey: 0, // 当前选中项的索引
       categoryList: [],
     };
   },
   methods: {},
-  created(){
-
-  },
+  created() {},
 };
 </script>
 
@@ -73,18 +69,22 @@ export default {
   margin-bottom: 1.19rem;
 }
 .van-sidebar::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 /* 左侧导航 */
-.middle-wrap .van-sidebar .van-sidebar-item{
-  
+.middle-wrap .van-sidebar li{
+  padding: 0.1rem 0.05rem;
 }
-.middle-wrap .van-sidebar .van-sidebar-item--select{
-
+.middle-wrap .van-sidebar li .van-sidebar-item {
+  color: #777777;
+  padding: 0;
+}
+.middle-wrap .van-sidebar li .van-sidebar-item--select div {
+  background: linear-gradient(to right, #e6aa5c, #d08b30);
 }
 
 /* 右侧展示商品 */
-.middle-wrap .right{
+.middle-wrap .right {
   flex: 1;
   background: coral;
 }
