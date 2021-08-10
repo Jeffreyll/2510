@@ -2,7 +2,7 @@
   <div id="app">
     <Header v-if="$route.meta.requiresAuth"></Header>
     <router-view></router-view>
-    <Footer v-if="$route.meta.requiresAuth"></Footer>
+    <Footer v-if="$route.meta.isShow"></Footer>
   </div>
 </template>
 
