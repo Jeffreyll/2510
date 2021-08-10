@@ -29,6 +29,18 @@ const routes = [
     component: () => import("../views/Mine.vue"),
     meta: { requiresAuth: false },
   },
+  {
+    path: "/register",
+    name: "Register",
+    component: () => import("../views/Register.vue"),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
+    meta: { requiresAuth: false },
+  },
 ];
 
 const router = new VueRouter({

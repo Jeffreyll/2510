@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .homeHeader {
   height: 48px;
   background-color: #845d32;
