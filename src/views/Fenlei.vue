@@ -8,11 +8,13 @@
       </van-col>
     </van-row>
     <!-- 分类 -->
-    <van-sidebar v-model="activeKey" class="van-sidebar" @change="onChange">
-      <van-sidebar-item title="shouji" />
-      <van-sidebar-item title="2" />
-      <van-sidebar-item title="标签名3" />
-    </van-sidebar>
+    <div class="mid-fenlei">
+      <ul>
+        <li>
+          <div></div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -20,6 +22,9 @@
 export default {
   data() {
     return {
+      category:[
+        
+      ],
       // activeKey: 0,
       /* items: [
         { text: "有品推荐" },
@@ -74,5 +79,6 @@ export default {
   flex: 1;
   color: rgb(51, 51, 51);
   text-indent: 132px;
+  font-size: 16px;
 }
 </style>
