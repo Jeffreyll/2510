@@ -1,10 +1,11 @@
 <template>
-  <div>刘永庆</div>
+  <div class="cart">
+    购物车
+  </div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style>
-</style>
+<style></style>

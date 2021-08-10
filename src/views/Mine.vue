@@ -1,5 +1,5 @@
 <template>
-  <div>我是嫩爹</div>
+  <div class="mine">我的</div>
 </template>
 
 <script>
