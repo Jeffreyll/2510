@@ -18,7 +18,7 @@ const routes = [
     path: "/fenlei",
     name: "Fenlei",
     component: () => import("../views/Fenlei.vue"),
-    meta: { requiresAuth: false},
+    meta: { requiresAuth: false },
   },
 
   {
@@ -43,6 +43,12 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () => import("../views/Login.vue"),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/detail",
+    name: "Detail",
+    component: () => import("../views/Detail.vue"),
     meta: { requiresAuth: false },
   },
 ];
