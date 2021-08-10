@@ -54,11 +54,11 @@
         >
       </div>
     </van-form>
-    <van-radio-group v-model="radio">
-      <van-radio name="1" icon-size="15" class="radio">
-        <div class="read">
+    <van-radio-group v-model="checked">
+      <van-checkbox v-model="checked" icon-size="15" class="radio"
+        ><div class="read">
           已阅读并同意小米帐号<span>用户协议</span>和<span>隐私政策</span>
-        </div></van-radio
+        </div></van-checkbox
       >
     </van-radio-group>
   </div>
@@ -73,7 +73,7 @@ export default {
     return {
       username: "",
       password: "",
-      radio: "",
+      checked: "",
       show: false,
       fieldValue: "",
       fieldNames: {
@@ -88,7 +88,7 @@ export default {
   methods: {
     //注册
     async onSubmit(values) {
-      if (this.radio == 1) {
+      if (this.checked == true) {
         const res = await regApi(values);
         if (res.data.code == "success") {
           Toast.success("注册成功！");
@@ -116,6 +116,11 @@ export default {
 </script>
 
 <style scoped>
+.van-cell {
+  background: rgba(240, 240, 240, 1);
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
 .title {
   margin: 0 24px;
   margin-bottom: 9px;
