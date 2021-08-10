@@ -21,6 +21,7 @@
           :text="item.name"
           v-for="item in lists"
           :key="item._id"
+          class="vg_item"
         />
       </van-grid>
       <div class="cover">
@@ -28,6 +29,21 @@
           src="https://img.youpin.mi-img.com/jianyu/0115292c98e66899adf1a63964cea989.png@base@tag=imgScale&h=278&m=1&q=80&w=750"
           alt=""
         />
+      </div>
+      <!-- 图片滑动 -->
+      <div class="slidingTab">
+        <div class="sliding">
+          <h3>上新精选</h3>
+          <h3>更多 ></h3>
+        </div>
+        <ul class="sliding_ul">
+          <li v-for="item in products" :key="item._id">
+            <div class="sliding_img">
+              <h4><img :src="item.coverImg" alt="没有照片啊" /></h4>
+              <h3>{{ item.price }}</h3>
+            </div>
+          </li>
+        </ul>
       </div>
       <!-- ===== -->
       <van-list
@@ -103,7 +119,7 @@ export default {
         },
         {
           _id: 3,
-          name: "有品生活+",
+          name: "有品生活",
           img: "https://img.youpin.mi-img.com/jianyu/d5bb5c4a30f22e6d141d191bae80c70b.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
@@ -155,6 +171,36 @@ export default {
   padding: 0.28rem 0 0.28rem;
 }
 
+.slidingTab {
+  height: 3.8rem;
+}
+.sliding {
+  padding: 0.2rem 0.3rem;
+  display: flex;
+  justify-content: space-between;
+}
+.sliding_ul {
+  width: 100%;
+  display: flex;
+
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.sliding_ul li {
+  display: inline-block;
+  padding: 0 0.3rem;
+  width: 2.5rem;
+  height: 2.9rem;
+}
+.sliding_ul h3 {
+  font-size: 0.4rem;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+.sliding_img img {
+  width: 2rem;
+  height: 2rem;
+}
 .cover {
   width: 100%;
   height: 3rem;
