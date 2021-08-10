@@ -12,13 +12,13 @@ const routes = [
     path: "/home",
     name: "Home",
     component: () => import("../views/Home.vue"),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, isShow: true },
   },
   {
     path: "/fenlei",
     name: "Fenlei",
     component: () => import("../views/Fenlei.vue"),
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, isShow: true },
   },
 
   {

@@ -8,12 +8,19 @@
       </van-col>
     </van-row>
     <!-- 分类 -->
-    <div class="mid-fenlei">
-      <ul>
+    <div class="middle-wrap">
+      <van-sidebar v-model="activeKey">
         <li>
-          <div></div>
+          <van-sidebar-item title="标签名称" />
         </li>
-      </ul>
+        <li>
+          <van-sidebar-item title="标签名称" />
+        </li>
+        <li>
+          <van-sidebar-item title="标签名称" />
+        </li>
+      </van-sidebar>
+      <div class="right">you</div>
     </div>
   </div>
 </template>
@@ -22,41 +29,12 @@
 export default {
   data() {
     return {
-      category:[
-        
-      ],
-      // activeKey: 0,
-      /* items: [
-        { text: "有品推荐" },
-        { text: "手机数码" },
-        { text: "家用电器" },
-        { text: "智能家庭" },
-        { text: "美食酒饮" },
-        { text: "家具家装" },
-        { text: "出行车品" },
-        { text: "电脑办公" },
-        { text: "服装配饰" },
-        { text: "运动户外" },
-        { text: "健康保健" },
-        { text: "日用文创" },
-        { text: "美妆个护" },
-        { text: "家纺餐厨" },
-        { text: "鞋靴箱包" },
-        { text: "母婴亲子" },
-        { text: "宠物生活" },
-        { text: "有品海购" },
-        { text: "DLAB" },
-        { text: "品牌墙" },
-      ],
-      activeId: 1,
-      activeIndex: 0, */
+      activeKey: 0, // 当前选中项的索引
+      categoryList: [],
     };
   },
-  methods: {
-    onChange(index) {
-      console.log(index);
-    },
-  },
+  methods: {},
+  created() {},
 };
 </script>
 
@@ -64,6 +42,8 @@ export default {
 .about {
   height: 100%;
   background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
 }
 .about .van-row .header {
   height: 38.5px;
@@ -80,5 +60,40 @@ export default {
   color: rgb(51, 51, 51);
   text-indent: 132px;
   font-size: 16px;
+}
+
+.middle-wrap {
+  flex: 1;
+  overflow: scroll;
+  display: flex;
+  margin-bottom: 1.19rem;
+}
+.van-sidebar::-webkit-scrollbar {
+  display: none;
+}
+/* 左侧导航 */
+.middle-wrap .van-sidebar{
+  background: white;
+}
+.middle-wrap .van-sidebar li{
+  padding: 0.25rem 0.15rem;
+}
+.middle-wrap .van-sidebar li .van-sidebar-item {
+  color: #777777;
+  padding: 0;
+  text-align: center;
+  background: white;
+  border-radius: 0.17rem;
+}
+.middle-wrap .van-sidebar li .van-sidebar-item--select  {
+  color: white;
+  background: linear-gradient(to right, #e6aa5c, #d08b30);
+  
+}
+
+/* 右侧展示商品 */
+.middle-wrap .right {
+  flex: 1;
+  background: coral;
 }
 </style>
