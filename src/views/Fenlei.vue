@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      activeKey: 0,
+      // activeKey: 0,
       /* items: [
         { text: "有品推荐" },
         { text: "手机数码" },

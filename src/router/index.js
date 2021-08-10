@@ -18,7 +18,7 @@ const routes = [
     path: "/fenlei",
     name: "Fenlei",
     component: () => import("../views/Fenlei.vue"),
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false},
   },
 
   {
