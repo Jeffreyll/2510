@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header v-if="$route.meta.requiresAuth"></Header>
     <router-view></router-view>
     <Footer></Footer>
   </div>
