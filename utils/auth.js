@@ -1,7 +1,7 @@
 import { TOKEN } from "./tools";
 // 判断是否登录
 export const islogined = () => {
-  if (localStorage.setItem("token")) {
+  if (localStorage.getItem("token")) {
     return true;
   }
 };
