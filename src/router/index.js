@@ -12,44 +12,44 @@ const routes = [
     path: "/home",
     name: "Home",
     component: () => import("../views/Home.vue"),
-    meta: { requiresAuth: true,footerShow: true, },
+    meta: { requiresAuth: true, isShow: true },
   },
   {
     path: "/fenlei",
     name: "Fenlei",
     component: () => import("../views/Fenlei.vue"),
-    meta: { requiresAuth: false,footerShow: true, },
+    meta: { requiresAuth: false, isShow: true },
   },
 
   {
     path: "/cart",
     name: "Cart",
     component: () => import("../views/Cart.vue"),
-    meta: { requiresAuth: false,footerShow: false, },
+    meta: { requiresAuth: false },
   },
   {
     path: "/mine",
     name: "Mine",
     component: () => import("../views/Mine.vue"),
-    meta: { requiresAuth: false,footerShow: false, },
+    meta: { requiresAuth: false },
   },
   {
     path: "/register",
     name: "Register",
     component: () => import("../views/Register.vue"),
-    meta: { requiresAuth: false,footerShow: false, },
+    meta: { requiresAuth: false },
   },
   {
     path: "/login",
     name: "Login",
     component: () => import("../views/Login.vue"),
-    meta: { requiresAuth: false,footerShow: false, },
+    meta: { requiresAuth: false },
   },
   {
     path: "/detail",
     name: "Detail",
     component: () => import("../views/Detail.vue"),
-    meta: { requiresAuth: false,footerShow: false, },
+    meta: { requiresAuth: false },
   },
 ];
 

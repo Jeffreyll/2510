@@ -2,7 +2,7 @@
   <div id="app">
     <Header v-if="$route.meta.requiresAuth"></Header>
     <router-view></router-view>
-    <Footer v-if="$route.meta.footerShow"></Footer>
+    <Footer v-if="$route.meta.isShow"></Footer>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped>
-#app{
+#app {
   height: 100%;
 }
 </style>
