@@ -11,16 +11,17 @@
     <van-form @submit="onSubmit" class="form">
       <van-field
         v-model="username"
-        name="user"
+        name="userName"
         placeholder="邮箱/手机号码/小米ID"
         :rules="[{ required: true, message: '请填写用户名' }]"
         clearable
+        autocomplete="off"
       />
       <van-field
         v-model="password"
         type="password"
         placeholder="密码"
-        name="pass"
+        name="password"
         right-icon="eye"
         :rules="[{ required: true, message: '请填写密码' }]"
       />
@@ -92,6 +93,8 @@
 </template>
 
 <script>
+import { Toast } from "vant";
+import { logApi } from "../../api/user";
 export default {
   data() {
     return {
@@ -101,8 +104,14 @@ export default {
   },
   methods: {
     //登录提交
-    onSubmit() {
-      console.log(1);
+    async onSubmit(values) {
+      const res = await logApi(values);
+      if (res.data.code == "success") {
+        Toast.success("登录成功！");
+        this.$router.push("/");
+      } else {
+        Toast.fail("请检查用户名或密码！");
+      }
     },
     //点击立即注册  跳转注册
     goRegister() {
@@ -130,6 +139,7 @@ export default {
 .title_img p {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.6);
+  margin-top: 13px;
 }
 .reg {
   display: flex;

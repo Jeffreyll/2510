@@ -5,6 +5,7 @@
         <van-icon
           size="30"
           name="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAAM1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACjBUbJAAAAEXRSTlMAzCypv7h8bhwiJ3ajBpVZQCANZkQAAACcSURBVGje7ddBDoMgEEDRGaTYIrTe/7RNuiKNmoxRFPLfcjY/RBMYAQAAAIDjxORDlnM5r6ofsbI3NMiZ4q+hs1jZG2MxorHi1UvjUa0xFaMmG896jVCMaFzf0MEkjVkM3mpmP7nXfXyNkwzmb2LnneyoJGcR8w3/4S4rk/xp7z7prLL0WqGyIfZXmWVBW5vW5s7Y2PYLAAAA4La+a3oF6H7vsPkAAAAASUVORK5CYII="
+          @click="goback"
         />
       </template>
     </van-nav-bar>
@@ -19,28 +20,31 @@
         readonly
         placeholder="请选择所在地区"
         @click="show = true"
+        name="nickName"
       />
       <van-popup v-model="show" round position="bottom">
         <van-cascader
           v-model="cascaderValue"
           title="请选择所在地区"
           :options="options"
+          :field-names="fieldNames"
           @close="show = false"
           @finish="onFinish"
         />
       </van-popup>
       <van-field
         v-model="username"
-        name="user"
+        name="userName"
         placeholder="邮箱/手机号码/小米ID"
         :rules="[{ required: true, message: '请填写用户名' }]"
         clearable
+        autocomplete="off"
       />
       <van-field
         v-model="password"
         type="password"
         placeholder="密码"
-        name="pass"
+        name="password"
         :rules="[{ required: true, message: '请填写密码' }]"
       />
 
@@ -61,39 +65,52 @@
 </template>
 
 <script>
+import { country } from "../../api/country";
+import { Toast } from "vant";
+import { regApi } from "../../api/user";
 export default {
   data() {
     return {
       username: "",
       password: "",
-      radio: 1,
+      radio: "",
       show: false,
       fieldValue: "",
+      fieldNames: {
+        text: "name",
+        value: "id",
+      },
       cascaderValue: "",
       // 选项列表，children 代表子选项，支持多级嵌套
-      options: [
-        {
-          text: "浙江省",
-          value: "330000",
-          children: [{ text: "杭州市", value: "330100" }],
-        },
-        {
-          text: "江苏省",
-          value: "320000",
-          children: [{ text: "南京市", value: "320100" }],
-        },
-      ],
+      options: [],
     };
   },
   methods: {
-    onSubmit() {
-      console.log(1);
+    //注册
+    async onSubmit(values) {
+      if (this.radio == 1) {
+        const res = await regApi(values);
+        if (res.data.code == "success") {
+          Toast.success("注册成功！");
+          this.$router.push("/login");
+        } else if (res.data.code == "error") {
+          Toast.fail(res.data.message);
+        }
+      } else {
+        Toast.fail("请您同意用户条款");
+      }
     },
     onFinish({ selectedOptions }) {
       this.show = false;
-      this.fieldValue = selectedOptions.map((option) => option.text).join("/");
+      this.fieldValue = selectedOptions.map((option) => option.name).join("/");
     },
-    area() {},
+    //返回上一级
+    goback() {
+      this.$router.go(-1);
+    },
+  },
+  created() {
+    this.options = country;
   },
 };
 </script>
@@ -120,6 +137,7 @@ export default {
   color: rgba(0, 0, 0, 0.54);
 }
 .radio {
+  margin-top: 60px;
   justify-content: center;
 }
 </style>
