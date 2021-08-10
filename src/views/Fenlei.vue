@@ -72,15 +72,23 @@ export default {
   display: none;
 }
 /* 左侧导航 */
+.middle-wrap .van-sidebar{
+  background: white;
+}
 .middle-wrap .van-sidebar li{
-  padding: 0.1rem 0.05rem;
+  padding: 0.25rem 0.15rem;
 }
 .middle-wrap .van-sidebar li .van-sidebar-item {
   color: #777777;
   padding: 0;
+  text-align: center;
+  background: white;
+  border-radius: 0.17rem;
 }
-.middle-wrap .van-sidebar li .van-sidebar-item--select div {
+.middle-wrap .van-sidebar li .van-sidebar-item--select  {
+  color: white;
   background: linear-gradient(to right, #e6aa5c, #d08b30);
+  
 }
 
 /* 右侧展示商品 */
