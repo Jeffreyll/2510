@@ -8,13 +8,6 @@
       </van-col>
     </van-row>
     <!-- 分类 -->
-    <div class="mid-fenlei">
-      <ul>
-        <li>
-          <div></div>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 
@@ -22,41 +15,10 @@
 export default {
   data() {
     return {
-      category:[
-        
-      ],
-      // activeKey: 0,
-      /* items: [
-        { text: "有品推荐" },
-        { text: "手机数码" },
-        { text: "家用电器" },
-        { text: "智能家庭" },
-        { text: "美食酒饮" },
-        { text: "家具家装" },
-        { text: "出行车品" },
-        { text: "电脑办公" },
-        { text: "服装配饰" },
-        { text: "运动户外" },
-        { text: "健康保健" },
-        { text: "日用文创" },
-        { text: "美妆个护" },
-        { text: "家纺餐厨" },
-        { text: "鞋靴箱包" },
-        { text: "母婴亲子" },
-        { text: "宠物生活" },
-        { text: "有品海购" },
-        { text: "DLAB" },
-        { text: "品牌墙" },
-      ],
-      activeId: 1,
-      activeIndex: 0, */
+      category: [],
     };
   },
-  methods: {
-    onChange(index) {
-      console.log(index);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -65,6 +27,7 @@ export default {
   height: 100%;
   background: #f6f6f6;
 }
+.about .van-row
 .about .van-row .header {
   height: 38.5px;
   padding: 0 12px;
