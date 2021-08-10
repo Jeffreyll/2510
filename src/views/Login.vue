@@ -171,4 +171,15 @@ export default {
   justify-content: space-around;
   margin-top: 11px;
 }
+.van-cell {
+  background: rgba(240, 240, 240, 1);
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.form {
+  padding: 0 24px;
+}
+.submit {
+  margin-top: 40px;
+}
 </style>
