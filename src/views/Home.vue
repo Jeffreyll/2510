@@ -78,65 +78,54 @@ export default {
       banners: [
         {
           _id: 0,
-          url:
-            "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
+          url: "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
         },
         {
           _id: 1,
-          url:
-            "https://img.youpin.mi-img.com/test/7b26c0e3da46f9830ffe6b91f763b04b.png?w=1080&h=450",
+          url: "https://img.youpin.mi-img.com/test/7b26c0e3da46f9830ffe6b91f763b04b.png?w=1080&h=450",
         },
         {
           _id: 2,
-          url:
-            "https://img.youpin.mi-img.com/test/70f06a45d96a45794397720e711ca054.jpeg?w=1080&h=450",
+          url: "https://img.youpin.mi-img.com/test/70f06a45d96a45794397720e711ca054.jpeg?w=1080&h=450",
         },
         {
           _id: 3,
-          url:
-            "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
+          url: "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
         },
         {
           _id: 4,
-          url:
-            "https://img.youpin.mi-img.com/ecpm/4c6b997c_5353_4038_aca6_03e1da7878e0.jpeg@base@tag=imgScale&h=320&w=750",
+          url: "https://img.youpin.mi-img.com/ecpm/4c6b997c_5353_4038_aca6_03e1da7878e0.jpeg@base@tag=imgScale&h=320&w=750",
         },
         {
           _id: 5,
-          url:
-            "https://img.youpin.mi-img.com/test/24174e0bd02fbee4757121bbc3c2334e.jpeg?w=1080&h=450",
+          url: "https://img.youpin.mi-img.com/test/24174e0bd02fbee4757121bbc3c2334e.jpeg?w=1080&h=450",
         },
       ],
       lists: [
         {
           _id: 0,
           name: "上新精选",
-          img:
-            "https://img.youpin.mi-img.com/jianyu/3b9f8b4e5a1639cafbb3be08cba9963a.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img: "https://img.youpin.mi-img.com/jianyu/3b9f8b4e5a1639cafbb3be08cba9963a.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 1,
           name: "小米众筹",
-          img:
-            "https://img.youpin.mi-img.com/jianyu/531253430ba83f5b88e4ae92cb5a197c.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img: "https://img.youpin.mi-img.com/jianyu/531253430ba83f5b88e4ae92cb5a197c.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 2,
           name: "小米秒杀",
-          img:
-            "https://img.youpin.mi-img.com/jianyu/7a255e71670b9ef4a90723223265b5c5.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img: "https://img.youpin.mi-img.com/jianyu/7a255e71670b9ef4a90723223265b5c5.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 3,
           name: "有品生活",
-          img:
-            "https://img.youpin.mi-img.com/jianyu/d5bb5c4a30f22e6d141d191bae80c70b.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img: "https://img.youpin.mi-img.com/jianyu/d5bb5c4a30f22e6d141d191bae80c70b.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 4,
           name: "小米自营",
-          img:
-            "https://img.youpin.mi-img.com/jianyu/52ec26cccb4d945aa4bacac4ec7c4622.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img: "https://img.youpin.mi-img.com/jianyu/52ec26cccb4d945aa4bacac4ec7c4622.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
       ],
       products: [],
@@ -163,7 +152,7 @@ export default {
       this.getpeoducts();
     },
     godetail(id) {
-      this.$router.push("/detail/" + id);
+      this.$router.push({ path: "/detail", query: { id: id } });
     },
   },
   created() {},
