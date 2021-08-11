@@ -36,7 +36,11 @@ export default {
   methods: {
     async onSave(content) {
       console.log(content);
-      const regions = content.province + content.city + content.county;
+      const regions =
+        content.province +
+        content.city +
+        content.county +
+        content.addressDetail;
       const obj = {
         //         receiver    收货人姓名
         // mobile      手机号
@@ -50,7 +54,6 @@ export default {
         idDefault: content.isDefault,
       };
       const res = await addAddress(obj);
-      console.log(res);
       if (res.data.code == "success") {
         Toast.success("新增地址成功！");
         this.$router.push("/address");
