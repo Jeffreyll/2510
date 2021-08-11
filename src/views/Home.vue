@@ -163,7 +163,7 @@ export default {
       this.getpeoducts();
     },
     godetail(id) {
-      this.$router.push("/detail/" + id);
+      this.$router.push({ path: "/detail", query: { id: id } });
     },
   },
   created() {},
