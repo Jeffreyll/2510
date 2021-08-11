@@ -1,7 +1,7 @@
 <template>
   <div class="addAddress">
     <van-nav-bar
-      title="新增地址"
+      title="修改地址"
       left-text="返回"
       right-text="按钮"
       left-arrow
@@ -10,12 +10,13 @@
     />
     <van-address-edit
       :area-list="areaList"
-      show-postal
-      show-set-default
+      show-delete
       show-search-result
+      :address-info="addressInfo"
       :search-result="searchResult"
       :area-columns-placeholder="['请选择', '请选择', '请选择']"
       @save="onSave"
+      @delete="onDelete"
     />
   </div>
 </template>
@@ -23,44 +24,45 @@
 <script>
 import { Toast } from "vant";
 import areaList from "../../api/area";
-import { addAddress } from "../../api/address";
+import { editAddress, delAddress } from "../../api/address";
 export default {
   data() {
     return {
       areaList,
       searchResult: [],
-      regions: "",
+      addressInfo: {},
+      item: {},
     };
   },
   methods: {
+    //保存地址
     async onSave(content) {
-      this.regions =
+      const regions =
         content.province +
         content.city +
         content.county +
         content.addressDetail;
       const obj = {
-        // receiver    收货人姓名
-        // mobile      手机号
-        // regions     地区信息(河南省-郑州市-二七区)
-        // address     详细地址(航海路1290号)
-        // idDefault   是否默认(true/false)
         receiver: content.name,
         mobile: content.tel,
-        regions: this.regions,
-        address: content.tel,
-        idDefault: content.isDefault,
+        regions,
+        address: regions,
+        idDefault: false,
       };
-      const res = await addAddress(obj);
-      if (res.data.code == "success") {
-        Toast.success("新增地址成功！");
-        console.log(this.regions);
-        this.$router.push({
-          path: "/address",
-        });
+      const res = await editAddress(content.id, obj);
+      if (res.status == 200) {
+        Toast.success("修改成功");
+        this.$router.push("/address");
       }
     },
-
+    //删除地址
+    async onDelete(content) {
+      const res = await delAddress(content.id);
+      if (res.status == 200) {
+        Toast.success("删除成功");
+        this.$router.push("/address");
+      }
+    },
     //返回上一级
     onClickLeft() {
       this.$router.go(-1);
@@ -68,6 +70,19 @@ export default {
     onClickRight() {
       Toast("按钮");
     },
+    //获得参数回显
+    getdata() {
+      this.item = JSON.parse(this.$route.query.item);
+      this.addressInfo = {
+        id: this.item.id,
+        name: this.item.name,
+        tel: this.item.tel,
+        addressDetail: this.item.address,
+      };
+    },
+  },
+  created() {
+    this.getdata();
   },
 };
 </script>

@@ -29,6 +29,7 @@ instance.interceptors.response.use(
 // 封装 get post 请求
 export const get = (url, params) => instance.get(url, { params });
 export const post = (url, data) => instance.post(url, data);
+export const put = (url, data) => instance.put(url, data);
 // 封装删除
 export const del = (url, params) => instance.delete(url, { params });
 export default instance;
