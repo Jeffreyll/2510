@@ -95,6 +95,7 @@
 <script>
 import { Toast } from "vant";
 import { logApi } from "../../api/user";
+import { setToken } from "../../utils/auth";
 export default {
   data() {
     return {
@@ -109,6 +110,7 @@ export default {
       if (res.data.code == "success") {
         Toast.success("登录成功！");
         this.$router.push("/");
+        setToken(res.data.token);
       } else {
         Toast.fail("请检查用户名或密码！");
       }
