@@ -8,40 +8,27 @@
     >
       <template #right> <van-icon name="search" size="20" /> </template
     ></van-nav-bar>
-    <div class="cart-list" v-for="item in list" :key="item.product._id">
-      <van-checkbox v-model="item.checked"></van-checkbox>
-      <van-card
-        :num="item.quantity"
-        :price="item.product.price"
-        :title="item.product.name"
-        :thumb="item.product.coverImg"
-        tag="爆款"
-      >
-        <!--       <template #tags>
-          <van-tag plain type="danger">标签</van-tag>
-          <van-tag plain type="danger">标签</van-tag>
-          <van-checkbox v-model="item.checked" />
-        </template> -->
-        <template #footer>
+    <div class="cart_list" v-for="item in list" :key="item.product._id">
+      <!-- <van-checkbox v-model="item.checked" class="cart_check"></van-checkbox> -->
+      <van-swipe-cell>
+        <van-card
+          :num="item.quantity"
+          :price="item.product.price"
+          :title="item.product.name"
+          class="goods-card"
+          :thumb="item.product.coverImg"
+        >
+        </van-card>
+        <template #right>
           <van-button
-            @click="add(item.product._id, 1)"
-            round
-            size="mini"
-            icon="plus"
-            style="background: #ff6700"
+            square
+            text="删除"
+            type="danger"
+            class="delete-button"
+            @click="del(item._id)"
           />
-          <van-button
-            @click="sub(item.product._id, -1)"
-            round
-            size="mini"
-            icon="minus"
-            style="background: #ff6700"
-          />
-          <van-button @click="del(item._id)" round size="mini" type="danger"
-            >删除</van-button
-          >
         </template>
-      </van-card>
+      </van-swipe-cell>
     </div>
     <van-submit-bar
       :price="sumPrice * 100"
@@ -56,7 +43,7 @@
 
 <script>
 import { delCart, loadCart, addToCart } from "../../api/cart";
-import { Toast } from "vant";
+import { Toast, Dialog } from "vant";
 import { addorder } from "../../api/order";
 
 export default {
@@ -103,7 +90,6 @@ export default {
       return newList;
     },
   },
-
   methods: {
     //提交订单
     async onSubmit() {
@@ -149,12 +135,17 @@ export default {
     },
     //删除购物车
     async del(id) {
-      const res = await delCart(id);
-      console.log(res);
-      if (res.status == 200) {
-        Toast.success("删除商品成功！");
-      }
-      this.init();
+      Dialog.confirm({
+        message: "确定删除吗？",
+      })
+        .then(async () => {
+          const res = await delCart(id);
+          if (res.code == 200) {
+            Toast.success("删除商品成功！");
+          }
+          this.init();
+        })
+        .catch(() => {});
     },
   },
   created() {
@@ -164,13 +155,11 @@ export default {
 </script>
 
 <style scoped>
-/* .van-checkbox {
-  justify-content: flex-end;
-} */
-.cart-list {
-  display: flex;
+.goods-card {
+  margin: 0;
+  background-color: white;
 }
-.van-card {
-  flex: 1;
+.delete-button {
+  height: 100%;
 }
 </style>
