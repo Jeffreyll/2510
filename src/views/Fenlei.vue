@@ -21,7 +21,8 @@
       </van-sidebar>
       <div class="right">
         <div class="right-body">
-          <li class="goods" v-for="(item, index)  in categorygoodsList" :key="index">
+          <!-- 商品 -->
+          <li class="goods" v-for="(item, index)  in categorygoodsList" :key="index" @click="toDetail(item._id)">
             <img :src="item.coverImg" alt="" />
             <p>{{item.name}}</p>
           </li>
@@ -51,11 +52,18 @@ export default {
   methods: {
     // 获取分类商品信息
     async getCategory(name) {
-      console.log(name);
+      // console.log(name);
       const res = await reqProducts({ per: 50, name: name });
-      console.log(res.data.products);
+      // console.log(res.data.products);
       this.categorygoodsList = res.data.products;
+      // console.log(this.categorygoodsList);
     },
+    // 跳转详情页
+    toDetail(id){
+      // console.log(id);
+      // 携带商品id到详情页
+      this.$router.push('/detail'+id)
+    }
   },
   created() {
     this.getCategory(this.categoryList[0].name);
