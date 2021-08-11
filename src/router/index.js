@@ -25,13 +25,13 @@ const routes = [
     path: "/cart",
     name: "Cart",
     component: () => import("../views/Cart.vue"),
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, isShow: true },
   },
   {
     path: "/mine",
     name: "Mine",
     component: () => import("../views/Mine.vue"),
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, isShow: true },
   },
   {
     path: "/register",

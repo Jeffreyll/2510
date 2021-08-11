@@ -43,16 +43,28 @@ export default {
     };
   },
   methods: {
+    //加载地址列表
     async loadAddressList() {
       const res = await loadAddress();
-      console.log(res);
-      this.list = res.data.addresses;
+      const newArr = [];
+      res.data.addresses.forEach((item) => {
+        newArr.push({
+          id: item._id,
+          name: item.receiver,
+          tel: item.mobile,
+          address: item.regions,
+        });
+      });
+      this.list = newArr;
     },
+    //新增地址
     onAdd() {
       this.$router.push("/Addaddress");
     },
+    //修改地址
     onEdit(item, index) {
       Toast("编辑地址:" + index);
+      console.log(item, index);
     },
     onClickLeft() {
       this.$router.go(-1);
