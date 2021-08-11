@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .detail-main .goods-img {
   display: block;
   width: 100%;
