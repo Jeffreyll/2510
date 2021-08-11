@@ -63,6 +63,12 @@ const routes = [
     component: () => import("../views/Addaddress.vue"),
     meta: { requiresAuth: false },
   },
+  {
+    path: "/editAddress",
+    name: "editAddress",
+    component: () => import("../views/Editaddress.vue"),
+    meta: { requiresAuth: false },
+  },
 ];
 
 const router = new VueRouter({

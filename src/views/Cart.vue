@@ -122,6 +122,7 @@ export default {
     //初始化，加载购物车列表
     async init() {
       const res = await loadCart();
+      console.log(res);
       this.list = res.data;
     },
     //返回上一级
