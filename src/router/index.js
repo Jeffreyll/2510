@@ -46,7 +46,7 @@ const routes = [
     meta: { requiresAuth: false },
   },
   {
-    path: "/detail/:id",
+    path: "/detail",
     name: "Detail",
     component: () => import("../views/Detail.vue"),
     meta: { requiresAuth: false },

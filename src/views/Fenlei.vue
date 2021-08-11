@@ -22,9 +22,14 @@
       <div class="right">
         <div class="right-body">
           <!-- 商品 -->
-          <li class="goods" v-for="(item, index)  in categorygoodsList" :key="index" @click="toDetail(item._id)">
+          <li
+            class="goods"
+            v-for="(item, index) in categorygoodsList"
+            :key="index"
+            @click="toDetail(item._id)"
+          >
             <img :src="item.coverImg" alt="" />
-            <p>{{item.name}}</p>
+            <p>{{ item.name }}</p>
           </li>
         </div>
       </div>
@@ -59,11 +64,11 @@ export default {
       // console.log(this.categorygoodsList);
     },
     // 跳转详情页
-    toDetail(id){
+    toDetail(id) {
       // console.log(id);
       // 携带商品id到详情页
-      this.$router.push('/detail'+id)
-    }
+      this.$router.push({ path: "/detail", query: { id: id } });
+    },
   },
   created() {
     this.getCategory(this.categoryList[0].name);
@@ -147,7 +152,7 @@ export default {
   overflow-y: auto;
 }
 .right-body .goods {
-  height: 2.0rem;
+  height: 2rem;
   width: 1.33rem;
   margin-top: 0.27rem;
   margin-left: 0.215rem;
