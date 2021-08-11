@@ -39,7 +39,8 @@
 
 <script>
 import { Toast } from "vant";
-import { reqProductsInfo, repAddCart } from "../../api/products";
+import { reqProductsInfo } from "../../api/products";
+import { addToCart } from "../../api/cart";
 export default {
   data() {
     return {
@@ -66,7 +67,7 @@ export default {
     },
     // 加入购物车
     async addCart() {
-      const res = await repAddCart(this.productID);
+      const res = await addToCart(this.productID);
       console.log(res);
       if (res.data.code === "success") {
         Toast.success("加入购物车成功！");
