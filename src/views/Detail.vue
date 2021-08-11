@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    详情页
+    <div>xiangqingye123</div>
   </div>
 </template>
 
