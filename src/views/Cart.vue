@@ -8,40 +8,41 @@
     >
       <template #right> <van-icon name="search" size="20" /> </template
     ></van-nav-bar>
-    <van-card
-      v-for="item in list"
-      :key="item.product._id"
-      :num="item.quantity"
-      :price="item.product.price"
-      :title="item.product.name"
-      :thumb="item.product.coverImg"
-      tag="爆款"
-    >
-      <template #tags>
-        <van-tag plain type="danger">标签</van-tag>
-        <van-tag plain type="danger">标签</van-tag>
-        <van-checkbox v-model="item.checked" />
-      </template>
-      <template #footer>
-        <van-button
-          @click="add(item.product._id, 1)"
-          round
-          size="mini"
-          icon="plus"
-          style="background:#ff6700"
-        />
-        <van-button
-          @click="sub(item.product._id, -1)"
-          round
-          size="mini"
-          icon="minus"
-          style="background:#ff6700"
-        />
-        <van-button @click="del(item._id)" round size="mini" type="danger"
-          >删除</van-button
-        >
-      </template>
-    </van-card>
+    <div class="cart-list" v-for="item in list" :key="item.product._id">
+      <van-checkbox v-model="item.checked"></van-checkbox>
+      <van-card
+        :num="item.quantity"
+        :price="item.product.price"
+        :title="item.product.name"
+        :thumb="item.product.coverImg"
+        tag="爆款"
+      >
+        <!--       <template #tags>
+          <van-tag plain type="danger">标签</van-tag>
+          <van-tag plain type="danger">标签</van-tag>
+          <van-checkbox v-model="item.checked" />
+        </template> -->
+        <template #footer>
+          <van-button
+            @click="add(item.product._id, 1)"
+            round
+            size="mini"
+            icon="plus"
+            style="background: #ff6700"
+          />
+          <van-button
+            @click="sub(item.product._id, -1)"
+            round
+            size="mini"
+            icon="minus"
+            style="background: #ff6700"
+          />
+          <van-button @click="del(item._id)" round size="mini" type="danger"
+            >删除</van-button
+          >
+        </template>
+      </van-card>
+    </div>
     <van-submit-bar
       :price="sumPrice * 100"
       button-text="提交订单"
@@ -83,7 +84,7 @@ export default {
         .filter((item) => {
           return item.checked == true;
         })
-        .reduce(function(pre, cur) {
+        .reduce(function (pre, cur) {
           return pre + cur.product.price * cur.quantity;
         }, 0);
     },
@@ -163,7 +164,13 @@ export default {
 </script>
 
 <style scoped>
-.van-checkbox {
+/* .van-checkbox {
   justify-content: flex-end;
+} */
+.cart-list {
+  display: flex;
+}
+.van-card {
+  flex: 1;
 }
 </style>
