@@ -128,20 +128,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 64px;
-  padding-bottom: 41px;
+  padding-top: 1.5rem;
+  padding-bottom: 0.96rem;
   background: url("https://cdn.web-global.fds.api.mi-img.com/mcfe--mi-account/static/static/media/background.d3d7d2dd.png");
   background-size: cover;
 }
 .title_img img {
   display: block;
-  width: 48px;
-  height: 48px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 .title_img p {
-  font-size: 12px;
+  font-size: 0.281rem;
   color: rgba(0, 0, 0, 0.6);
-  margin-top: 13px;
+  margin-top: 0.304rem;
 }
 .reg {
   display: flex;
@@ -149,39 +149,39 @@ export default {
 }
 .reg span {
   color: rgba(0, 0, 0, 0.54);
-  font-size: 12px;
+  font-size: 0.281rem;
   display: block;
-  padding-top: 20px;
+  padding-top: 0.468rem;
 }
 .reg span:nth-of-type(2) {
-  margin: 0 2px;
+  margin: 0 0.046rem;
 }
 .else {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 0.468rem;
 }
 .else span {
   color: rgba(0, 0, 0, 20%);
-  font-size: 12px;
+  font-size: 0.281rem;
 }
 .icon {
-  width: 245px;
+  width: 5.742rem;
   display: flex;
   justify-content: space-around;
-  margin-top: 11px;
+  margin-top: 0.257rem;
 }
 .van-cell {
   background: rgba(240, 240, 240, 1);
-  border-radius: 15px;
-  margin-bottom: 10px;
+  border-radius: 0.351rem;
+  margin-bottom: 0.234rem;
 }
 .form {
-  padding: 0 24px;
+  padding: 0 0.562rem;
 }
 .submit {
-  margin-top: 40px;
+  margin-top: 0.937rem;
 }
 </style>

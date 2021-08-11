@@ -118,31 +118,31 @@ export default {
 <style scoped>
 .van-cell {
   background: rgba(240, 240, 240, 1);
-  border-radius: 15px;
-  margin-bottom: 10px;
+  border-radius: 0.3515rem;
+  margin-bottom: 0.234rem;
 }
 .title {
-  margin: 0 24px;
-  margin-bottom: 9px;
+  margin: 0 0.562rem;
+  margin-bottom: 0.2109rem;
 }
 .title h2 {
   font-weight: 600;
   color: rgba(0, 0, 0, 1);
-  font-size: 18px;
-  height: 28px;
+  font-size: 0.421rem;
+  height: 0.656rem;
 }
 .title p,
 .read span {
   color: #0b84ff;
 }
 .form {
-  padding: 0 24px;
+  padding: 0 0.562rem;
 }
 .read {
   color: rgba(0, 0, 0, 0.54);
 }
 .radio {
-  margin-top: 60px;
+  margin-top: 1.406rem;
   justify-content: center;
 }
 </style>

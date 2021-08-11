@@ -1,7 +1,7 @@
 <template>
   <div class="mine">
     <div class="wrapper">
-      <van-cell class="login" :to="userInfo.to">
+      <van-cell class="login" ref="log" :to="userInfo.to" @click="golog">
         <template #title>
           <img
             style="border-radius=50%"
@@ -17,6 +17,13 @@
           />
         </template>
       </van-cell>
+    </div>
+    <van-cell title="我的订单" is-link class="order"></van-cell>
+    <div class="focus">
+      <div v-for="(item, i) in focusList" :key="i" class="focusList">
+        <img :src="item.img" alt="" />
+        <p>{{ item.name }}</p>
+      </div>
     </div>
     <van-cell
       v-for="(item, i) in tabList"
@@ -78,6 +85,28 @@ export default {
           "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
         to: "login",
       },
+      focusList: [
+        {
+          img:
+            "https://img.youpin.mi-img.com/shopcenter/1su4kcv21eg_22212270231600948691418.png",
+          name: "待付款",
+        },
+        {
+          img:
+            "https://img.youpin.mi-img.com/shopcenter/2rsi345c8a_22212270231600948691450.png",
+          name: "待收货",
+        },
+        {
+          img:
+            "https://img.youpin.mi-img.com/shopcenter/n9q7tuhs6ao_22212270231600948691455.png",
+          name: "评价",
+        },
+        {
+          img:
+            "https://img.youpin.mi-img.com/shopcenter/q69ib1u9teg_22212270231600948691439.png",
+          name: "退款/售后",
+        },
+      ],
       tabList: [
         {
           icon:
@@ -128,8 +157,17 @@ export default {
     async Users() {
       if (islogined) {
         const res = await loadUser();
-        console.log(res);
         this.userInfo = res.data;
+        this.$refs.log.style.background =
+          "url('https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/common/bg_page_header.png')";
+      }
+    },
+    //登录
+    golog() {
+      if (islogined) {
+        this.$router.push("/logout");
+      } else {
+        this.$router.push("/login");
       }
     },
     onChange(index) {
@@ -147,10 +185,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#app {
+  background: rgb(243, 243, 243);
+}
 .login {
-  width: 320px;
-  height: 86px;
+  width: 7.5rem;
+  height: 2.015rem;
   padding: 0;
   background: url("https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_bg_top.png");
 }
@@ -159,20 +200,21 @@ export default {
   align-items: center;
 }
 .avatar {
-  width: 51px;
-  height: 51px;
-  padding-left: 22px;
+  width: 1.195rem;
+  height: 1.195rem;
+  margin-left: 0.515rem;
+  border-radius: 50%;
 }
 .please {
-  padding-left: 17px;
-  height: 16px;
-  width: 200px;
-  font-size: 12px;
+  padding-left: 0.398rem;
+  height: 0.375rem;
+  width: 4.687rem;
+  font-size: 0.281rem;
   color: white;
 }
 .back {
-  width: 15px;
-  height: 15px;
+  width: 0.351rem;
+  height: 0.351rem;
 }
 .tabList {
   height: 1rem;
@@ -181,5 +223,29 @@ export default {
   width: 0.76rem;
   height: 0.76rem;
   margin-top: -0.14rem;
+}
+.focus {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  margin: 0.05rem 0 0.1rem;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 1.406rem;
+}
+.focusList img {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.focusList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.26rem;
+}
+.order {
+  padding-left: 0.7rem;
 }
 </style>
