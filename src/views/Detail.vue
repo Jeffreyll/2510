@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <!-- 顶部导航 -->
-    <van-nav-bar
+    <!-- <van-nav-bar
       title="标题"
       left-text="返回"
       left-arrow
@@ -12,7 +12,7 @@
       <template #right>
         <van-icon name="more" size="20" />
       </template>
-    </van-nav-bar>
+    </van-nav-bar> -->
     <!-- 页面中部 -->
     <div class="detail-main">
       <img class="goods-img" :src="productData.coverImg" alt="" />
@@ -87,5 +87,6 @@ export default {
 .detail-main .goods-img {
   display: block;
   width: 100%;
+  height: 7.50rem;
 }
 </style>
