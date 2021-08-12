@@ -67,7 +67,15 @@
       </div>
       <div class="panel-btn">
         <van-button
+          v-if="panelBtnShow"
           @click="addCart"
+          color="linear-gradient(to right, #ff6034, #ee0a24)"
+          block
+        >
+          确定
+        </van-button>
+        <van-button
+          v-if="!panelBtnShow"
           color="linear-gradient(to right, #ff6034, #ee0a24)"
           block
         >
@@ -90,7 +98,11 @@
         text="加入购物车"
         @click="alertPanel()"
       />
-      <van-goods-action-button type="danger" text="立即购买" />
+      <van-goods-action-button
+        type="danger"
+        text="立即购买"
+        @click="buyNow()"
+      />
     </van-goods-action>
   </div>
 </template>
@@ -104,6 +116,7 @@ export default {
   data() {
     return {
       value: 1,
+      panelBtnShow: true,
       show: false,
       productID: "",
       productData: {},
@@ -134,6 +147,7 @@ export default {
     // 点击加入购物车弹出面板关闭
     closePanel() {
       this.show = false;
+      this.panelBtnShow = true;// 弹出面板点击确定按钮加入购车
     },
     // 商品数量加1
     addNum() {
@@ -155,7 +169,15 @@ export default {
       }
       this.getCartList(); // 加载购物车数据
     },
-    //
+    // 立即购买
+    buyNow() {
+      this.show = true;
+      this.panelBtnShow = false;// 弹出面板点击确定按钮加入购车
+      // this.$route.push({
+      //   path:"/"
+      // })
+    },
+    // 获取购物车列表数据
     async getCartList() {
       const res = await loadCart();
       console.log(res.data);
@@ -182,12 +204,12 @@ export default {
 
 <style scoped>
 .van-nav-bar {
-  background: rgba(255, 255, 255, );
+  background: rgba(255, 255, 255);
 }
 .van-hairline--bottom {
   border: none;
 }
-.detail-main{
+.detail-main {
   padding-top: 1.078rem;
 }
 .detail-main .goods-img {
