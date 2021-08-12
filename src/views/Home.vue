@@ -52,7 +52,7 @@
         finished-text="没有更多了"
         @load="onLoad"
       >
-        <van-grid :border="false" :column-num="2">
+        <van-grid :column-num="2">
           <van-grid-item
             v-for="item in products"
             :key="item._id"
@@ -216,8 +216,12 @@ export default {
   width: 2.7rem;
   height: 2.7rem;
 }
+
 .sm-box {
   padding: 0.16rem;
+}
+.van-grid-item__content {
+  border-radius: 20px;
 }
 .big-box {
   margin-top: 0.2rem;
