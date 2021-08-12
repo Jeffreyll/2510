@@ -147,7 +147,7 @@ export default {
     // 点击加入购物车弹出面板关闭
     closePanel() {
       this.show = false;
-      this.panelBtnShow = true;// 弹出面板点击确定按钮加入购车
+      this.panelBtnShow = true; // 弹出面板点击确定按钮加入购车
     },
     // 商品数量加1
     addNum() {
@@ -157,12 +157,12 @@ export default {
     // 商品数量减1
     loseNum() {
       this.value -= 1;
-      console.log(this.value);
+      // console.log(this.value);
     },
     // 加入购物车
     async addCart() {
       const res = await addToCart(this.productID, this.value);
-      console.log(res);
+      // console.log(res);
       if (res.data.code === "success") {
         Toast.success("加入购物车成功！");
         this.show = false;
@@ -172,10 +172,11 @@ export default {
     // 立即购买
     buyNow() {
       this.show = true;
-      this.panelBtnShow = false;// 弹出面板点击确定按钮加入购车
-      // this.$route.push({
-      //   path:"/"
-      // })
+      this.panelBtnShow = false; // 弹出面板点击确定按钮加入购车
+      this.$router.push({
+        path: "/order",
+        query: this.productID,
+      });
     },
     // 获取购物车列表数据
     async getCartList() {

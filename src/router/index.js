@@ -52,6 +52,12 @@ const routes = [
     meta: { requiresAuth: false },
   },
   {
+    path: "/order",
+    name: "Order",
+    component: () => import("../views/Order.vue"),
+    meta: { requiresAuth: false },
+  },
+  {
     path: "/address",
     name: "Address",
     component: () => import("../views/Address.vue"),
@@ -67,12 +73,6 @@ const routes = [
     path: "/editAddress",
     name: "editAddress",
     component: () => import("../views/Editaddress.vue"),
-    meta: { requiresAuth: false },
-  },
-  {
-    path: "/logout",
-    name: "logout",
-    component: () => import("../views/Logout.vue"),
     meta: { requiresAuth: false },
   },
 ];
