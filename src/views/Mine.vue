@@ -3,11 +3,13 @@
     <div class="wrapper">
       <van-cell class="login" ref="log" :to="userInfo.to">
         <template #title>
+          <van-uploader :after-read="afterRead" class="upload" />
           <img
             style="border-radius=50%"
             :src="userInfo.avatar"
             alt=""
             class="avatar"
+            name="img"
           />
           <span class="please">{{ userInfo.userName }}</span>
           <img
@@ -57,12 +59,14 @@
         @exchange="onExchange"
       />
     </van-popup>
+    <van-button v-show="flag" class="btn" @click="logout">退出</van-button>
   </div>
 </template>
 
 <script>
-import { islogined } from "../../utils/auth";
-import { loadUser } from "../../api/user";
+import { islogined, removeToken } from "../../utils/auth";
+import { loadUser, upload } from "../../api/user";
+import { Dialog } from "vant";
 const coupon = {
   available: 1,
   condition: "无使用门槛\n最多优惠12元",
@@ -80,7 +84,7 @@ export default {
       userInfo: {
         avatar:
           "https://img.youpin.mi-img.com/shopcenter/7dhur6i77hg_11350267611625208274363.png",
-        nickName: "请登录",
+        userName: "请登录",
         icon:
           "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
         to: "login",
@@ -112,14 +116,12 @@ export default {
           icon:
             "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_myassets.png",
           name: "我的权益",
-          to: "home",
         },
 
         {
           icon:
             "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_collection.png",
           name: "我的收藏",
-          to: "home",
         },
         {
           icon:
@@ -131,38 +133,77 @@ export default {
           icon:
             "https://shop.io.mi-img.com/app/shop/img?id=shop_0556651f21ebb90fd2094de25cfeeeff.png&w=114&h=114",
           name: "资质证照",
-          to: "home",
         },
         {
           icon:
             "https://shop.io.mi-img.com/app/shop/img?id=shop_eec55569c325c1641e1cd47ba572b83b.png&w=114&h=114",
           name: "协议规则",
-          to: "home",
         },
         {
           icon:
             "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_feedback.png",
           name: "帮助与反馈",
-          to: "home",
         },
       ],
       chosenCoupon: -1,
       coupons: [coupon],
       disabledCoupons: [coupon],
       showList: false,
+      flag: false,
     };
   },
   methods: {
     //获取用户信息
     async Users() {
-      if (islogined) {
+      if (islogined()) {
         const res = await loadUser();
         this.userInfo = res.data;
         this.$refs.log.style.background =
           "url('https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/common/bg_page_header.png')";
+        this.flag = true;
+      } else {
+        this.userInfo = {
+          avatar:
+            "https://img.youpin.mi-img.com/shopcenter/7dhur6i77hg_11350267611625208274363.png",
+          userName: "请登录",
+          icon:
+            "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
+          to: "login",
+        };
+        this.$refs.log.style.background =
+          "url('https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_bg_top.png')";
+        this.flag = false;
       }
     },
-
+    //退出登录
+    logout() {
+      Dialog.confirm({
+        title: "提示",
+        className: "logout",
+        message: "确定要退出吗",
+        confirmButtonText: "确定",
+        confirmButtonColor: "rgb(132, 95, 63)",
+        cancelButtonColor: "rgb(153, 153, 153)",
+      })
+        .then(() => {
+          // on confirm
+          removeToken();
+          this.Users();
+        })
+        .catch(() => {
+          // on cancel
+        });
+    },
+    //上传头像
+    async afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      this.userInfo.avatar = file.content;
+      // let param = new FormData(); // 创建form对象
+      // param.set("img", file.file); //对应后台接收图片名
+      // console.log(param);
+      const res = await upload(file);
+      console.log(res);
+    },
     onChange(index) {
       this.showList = false;
       this.chosenCoupon = index;
@@ -172,14 +213,14 @@ export default {
       console.log(code);
     },
   },
-  created() {
+  mounted() {
     this.Users();
   },
 };
 </script>
 
 <style scoped>
-#aaa {
+.mine {
   background: rgb(243, 243, 243);
 }
 .login {
@@ -240,5 +281,28 @@ export default {
 }
 .order {
   padding-left: 0.7rem;
+}
+.btn {
+  display: block;
+  margin: 0 auto;
+  border-color: rgb(178, 178, 178);
+  border-radius: 0.117rem;
+  border-width: 0.023rem;
+  height: 0.9rem;
+  width: 2rem;
+  margin-top: 0.07rem;
+}
+.upload {
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 1.195rem;
+  height: 1.195rem;
+  position: absolute;
+  left: 0.515rem;
+  opacity: 0;
+}
+.van-uploader__upload {
+  margin: 0;
 }
 </style>

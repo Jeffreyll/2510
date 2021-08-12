@@ -39,7 +39,7 @@
         <ul class="sliding_ul">
           <li v-for="item in products" :key="item._id">
             <div class="sliding_img">
-              <h4><img :src="item.coverImg" alt="没有照片啊" /></h4>
+              <h4><img :src="item.coverImg" alt="没有照片啊" class="img" /></h4>
               <h3 class="name">{{ item.name }}</h3>
             </div>
           </li>
@@ -78,54 +78,65 @@ export default {
       banners: [
         {
           _id: 0,
-          url: "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
+          url:
+            "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
         },
         {
           _id: 1,
-          url: "https://img.youpin.mi-img.com/test/7b26c0e3da46f9830ffe6b91f763b04b.png?w=1080&h=450",
+          url:
+            "https://img.youpin.mi-img.com/test/7b26c0e3da46f9830ffe6b91f763b04b.png?w=1080&h=450",
         },
         {
           _id: 2,
-          url: "https://img.youpin.mi-img.com/test/70f06a45d96a45794397720e711ca054.jpeg?w=1080&h=450",
+          url:
+            "https://img.youpin.mi-img.com/test/70f06a45d96a45794397720e711ca054.jpeg?w=1080&h=450",
         },
         {
           _id: 3,
-          url: "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
+          url:
+            "https://img.youpin.mi-img.com/test/74e804fe64eb9481925ba84f704b3e66.png?w=1080&h=450",
         },
         {
           _id: 4,
-          url: "https://img.youpin.mi-img.com/ecpm/4c6b997c_5353_4038_aca6_03e1da7878e0.jpeg@base@tag=imgScale&h=320&w=750",
+          url:
+            "https://img.youpin.mi-img.com/ecpm/4c6b997c_5353_4038_aca6_03e1da7878e0.jpeg@base@tag=imgScale&h=320&w=750",
         },
         {
           _id: 5,
-          url: "https://img.youpin.mi-img.com/test/24174e0bd02fbee4757121bbc3c2334e.jpeg?w=1080&h=450",
+          url:
+            "https://img.youpin.mi-img.com/test/24174e0bd02fbee4757121bbc3c2334e.jpeg?w=1080&h=450",
         },
       ],
       lists: [
         {
           _id: 0,
           name: "上新精选",
-          img: "https://img.youpin.mi-img.com/jianyu/3b9f8b4e5a1639cafbb3be08cba9963a.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img:
+            "https://img.youpin.mi-img.com/jianyu/3b9f8b4e5a1639cafbb3be08cba9963a.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 1,
           name: "小米众筹",
-          img: "https://img.youpin.mi-img.com/jianyu/531253430ba83f5b88e4ae92cb5a197c.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img:
+            "https://img.youpin.mi-img.com/jianyu/531253430ba83f5b88e4ae92cb5a197c.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 2,
           name: "小米秒杀",
-          img: "https://img.youpin.mi-img.com/jianyu/7a255e71670b9ef4a90723223265b5c5.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img:
+            "https://img.youpin.mi-img.com/jianyu/7a255e71670b9ef4a90723223265b5c5.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 3,
           name: "有品生活",
-          img: "https://img.youpin.mi-img.com/jianyu/d5bb5c4a30f22e6d141d191bae80c70b.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img:
+            "https://img.youpin.mi-img.com/jianyu/d5bb5c4a30f22e6d141d191bae80c70b.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
         {
           _id: 4,
           name: "小米自营",
-          img: "https://img.youpin.mi-img.com/jianyu/52ec26cccb4d945aa4bacac4ec7c4622.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
+          img:
+            "https://img.youpin.mi-img.com/jianyu/52ec26cccb4d945aa4bacac4ec7c4622.png@base@tag=imgScale&h=100&m=1&q=80&w=100",
         },
       ],
       products: [],
@@ -174,7 +185,10 @@ export default {
 .slidingTab {
   height: 4.3rem;
   padding: 0 0.2rem;
+  border-radius: 0.539rem;
+  overflow: hidden;
 }
+
 .sliding {
   padding: 0.2rem 0.3rem;
   display: flex;
@@ -215,11 +229,16 @@ export default {
 .v-img {
   width: 2.7rem;
   height: 2.7rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .sm-box {
   padding: 0.16rem;
+  border-radius: 0.9rem;
+  overflow: hidden;
 }
+
 .van-grid-item__content {
   border-radius: 20px;
 }
@@ -241,11 +260,13 @@ p {
   width: 3rem;
   overflow: hidden;
 }
-/* .sliding_img {
+.sliding_img .img {
   display: flex;
   flex-direction: column;
   align-items: center;
-} */
+  border-radius: 0.539rem;
+  overflow: hidden;
+}
 .sliding_img .name {
   font-size: 0.12rem;
   width: 2.15rem;

@@ -55,6 +55,7 @@
       button-text="提交订单"
       tip-icon="info-o"
       @submit="onSubmit"
+      class="footer"
     >
       <van-checkbox v-model="checked">全选</van-checkbox>
     </van-submit-bar>
@@ -70,6 +71,7 @@ export default {
   data() {
     return {
       list: [],
+      shwo: false,
     };
   },
   computed: {
@@ -91,7 +93,7 @@ export default {
         .filter((item) => {
           return item.checked == true;
         })
-        .reduce(function (pre, cur) {
+        .reduce(function(pre, cur) {
           return pre + cur.product.price * cur.quantity;
         }, 0);
     },
@@ -115,7 +117,7 @@ export default {
     async onSubmit() {
       console.log(this.selectList);
       const res = await addorder({
-        receiver: "汪道富",
+        receiver: "刘永庆",
         regions: "河南省郑州市二七区",
         address: "千锋教育",
         orderDetails: this.selectList,
@@ -227,5 +229,8 @@ export default {
 }
 .delete-button {
   height: 100%;
+}
+.footer {
+  margin-bottom: 1.171rem;
 }
 </style>

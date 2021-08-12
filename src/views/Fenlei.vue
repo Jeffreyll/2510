@@ -28,7 +28,9 @@
             :key="index"
             @click="toDetail(item._id)"
           >
-            <img :src="item.coverImg" alt="" />
+            <div class="div-img">
+              <img :src="item.coverImg" alt="" />
+            </div>
             <p>{{ item.name }}</p>
           </li>
         </div>
@@ -141,6 +143,7 @@ export default {
 }
 .right .right-body {
   width: 5.3rem;
+
   border-radius: 8px;
   background: white;
   margin-top: 0.2rem;
@@ -162,10 +165,16 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.goods img {
-  display: block;
+.goods .div-img {
+  border-radius: 0.117rem;
   width: 1.33rem;
   height: 1.33rem;
+}
+.goods .div-img img {
+  display: block;
+  border-radius: 0.234rem;
+  width: 100%;
+  height: 100%;
 }
 .goods p {
   /* background: wheat; */
@@ -175,5 +184,8 @@ export default {
   overflow: hidden;
   color: #777777;
   text-indent: 0.04rem;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
 }
 </style>
