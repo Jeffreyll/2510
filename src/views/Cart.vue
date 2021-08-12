@@ -167,7 +167,6 @@ export default {
           address: this.getAddressByIdList.regions,
           orderDetails: this.selectList,
         });
-        console.log(res);
         if (res.data.code == "success") {
           Toast.success("加入订单成功");
           this.init();
@@ -175,7 +174,7 @@ export default {
             this.$router.push({
               path: "/order",
               query: {
-                address: res.data.info.oredr,
+                address: res.data.info.order,
               },
             });
           }, 2000);
