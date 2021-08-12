@@ -69,12 +69,6 @@ const routes = [
     component: () => import("../views/Editaddress.vue"),
     meta: { requiresAuth: false },
   },
-  {
-    path: "/logout",
-    name: "logout",
-    component: () => import("../views/Logout.vue"),
-    meta: { requiresAuth: false },
-  },
 ];
 
 const router = new VueRouter({
