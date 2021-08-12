@@ -23,7 +23,19 @@
             >起
           </div>
           <div class="goods-price-r">
-            <van-icon name="star-o" size="26" />
+            <van-icon
+              v-if="collectIcon"
+              @click="collectIconShow"
+              name="star-o"
+              size="26"
+            />
+            <van-icon
+              v-if="!collectIcon"
+              @click="collectIconNo"
+              name="star"
+              size="26"
+              color="red"
+            />
             <span>收藏</span>
           </div>
         </div>
@@ -78,6 +90,7 @@
           v-if="!panelBtnShow"
           color="linear-gradient(to right, #ff6034, #ee0a24)"
           block
+          @click="buyOrder"
         >
           确定
         </van-button>
@@ -115,12 +128,13 @@ import { addToCart, loadCart } from "../../api/cart";
 export default {
   data() {
     return {
-      value: 1,
+      collectIcon: true, // 收藏图标
+      value: 1, // 要购买几件商品
       panelBtnShow: true,
       show: false,
       productID: "",
       productData: {},
-      proQuantity: 0,
+      proQuantity: 0, // 购物车列表加了多少件商品
     };
   },
   methods: {
@@ -140,6 +154,14 @@ export default {
     onClickRight() {
       Toast("按钮");
     },
+    // 未收藏图标显示
+    collectIconShow() {
+      this.collectIcon = false;
+    },
+    // 点击不收藏
+    collectIconNo() {
+      this.collectIcon = true;
+    },
     // 点击加入购物车弹出面板
     alertPanel() {
       this.show = true;
@@ -152,7 +174,6 @@ export default {
     // 商品数量加1
     addNum() {
       this.value += 1;
-      console.log(this.value);
     },
     // 商品数量减1
     loseNum() {
@@ -173,9 +194,13 @@ export default {
     buyNow() {
       this.show = true;
       this.panelBtnShow = false; // 弹出面板点击确定按钮加入购车
+    },
+    buyOrder() {
+      console.log(this.value);
+      console.log("商品id", this.productID);
       this.$router.push({
         path: "/order",
-        query: this.productID,
+        query: { id: this.productID, num: this.value },
       });
     },
     // 获取购物车列表数据
