@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <!-- 轮播图 -->
-
     <van-swipe class="my-swipe" :autoplay="3000">
       <van-swipe-item v-for="item in banners" :key="item._id">
         <img :src="item.url" alt="" class="img" />
