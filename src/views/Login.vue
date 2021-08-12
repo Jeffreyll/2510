@@ -109,7 +109,7 @@ export default {
       const res = await logApi(values);
       if (res.data.code == "success") {
         Toast.success("登录成功！");
-        this.$router.push("/");
+        this.$router.push("/mine");
         setToken(res.data.token);
       } else {
         Toast.fail("请检查用户名或密码！");
