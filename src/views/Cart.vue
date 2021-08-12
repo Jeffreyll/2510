@@ -9,14 +9,17 @@
       <template #right> <van-icon name="search" size="20" /> </template
     ></van-nav-bar>
     <div class="cart_list" v-for="item in list" :key="item.product._id">
-      <div class="cart_check">
+      <!--    <div class="cart_check">
         <van-checkbox v-model="item.checked"></van-checkbox>
-      </div>
+      </div> -->
       <div class="cart_swipe">
         <van-swipe-cell>
           <div class="cart_shop">
+            <div class="cart_check">
+              <van-checkbox v-model="item.checked"></van-checkbox>
+            </div>
             <div>
-              <img :src="item.product.coverImg" alt="" />
+              <img :src="item.product.coverImg" alt="小主人请等待一下" />
             </div>
             <div class="cart_right">
               <p>{{ item.product.name }}</p>
@@ -35,7 +38,6 @@
               </div>
             </div>
           </div>
-          <div></div>
           <template #right>
             <van-button
               square
