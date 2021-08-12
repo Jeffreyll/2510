@@ -24,9 +24,9 @@
       <div class="address">
         <div class="ren-addr" @click="show = true">
           <!-- <h3><span>姓名</span> <i>手机号</i></h3> -->
-          <h3>{{actObj.name}}</h3>
+          <h3>{{ actObj.name }}</h3>
           <div class="area">
-            <h4>{{actObj.subname}}</h4>
+            <h4>{{ actObj.subname }}</h4>
           </div>
         </div>
         <div class="address-r">
@@ -46,11 +46,7 @@
         />
       </div>
       <!-- 商品总价 -->
-      <div class="pro-info">
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-      </div>
+      <div class="pro-info"></div>
     </div>
     <!-- 提交订单 -->
     <van-submit-bar
@@ -64,6 +60,7 @@
 <script>
 import { getOrderlist, getOrderItem } from "../../api/order";
 import { loadAddress } from "../../api/address";
+// import { addorder } from "../../api/order";
 // import { get } from '../../utils/request';
 // import { Toast } from 'vant';
 export default {
@@ -72,7 +69,7 @@ export default {
     return {
       show: false, //地址面板状态
       actions: [], // 地址信息-面板选项列表
-      actObj:{},// 回调地址
+      actObj: {}, // 回调地址
       orderid: "", // 生成订单id
       orderIdArr: [], // 订单数组
       orderSingleItem: {}, // 订单详情
@@ -99,6 +96,7 @@ export default {
         });
       });
       this.actions = actArr;
+      this.actObj = this.actions[0];
       console.log("地址数据结构", this.actions);
     },
     //   订单列表
@@ -131,15 +129,35 @@ export default {
     },
     // 面板回调
     selectAddr(action, index) {
-        this.actObj=action
-      console.log("回调地址",this.actObj, index);
+      this.actObj = action;
+      console.log("回调地址", this.actObj, index);
     },
     // 提交订单
     onSubmit() {
       console.log("提交订单");
+      // 提交订单
+      //   const res = await addorder({
+      //     receiver: this.actObj.name,
+      //     regions: this.actObj.subname,
+      //     address: "xxx号",
+      //     orderDetails: [
+      //       {
+      //         quantity: this.value,
+      //         product: this.productID,
+      //         price: this.productData.price,
+      //       },
+      //     ],
+      //   });
+      //   console.log("提交订单信息", res);
+      console.log(this.actObj.name);
+      let strArr = this.actObj.name.split("");
+      strArr.splice(strArr.length - 11, 11);
+      strArr = strArr.join("");
+      console.log(strArr);
     },
   },
   created() {
+    console.log(this.$route.query);
     this.orderList(); //   订单列表
     this.getAddrList(); //地址列表
   },
@@ -152,7 +170,7 @@ export default {
   background: rgb(244, 244, 244);
 }
 .order-mid {
-  background: greenyellow;
+  /* background: greenyellow; */
   min-height: 2rem;
   margin: 0.234rem 0.234rem 0;
 }
@@ -194,7 +212,7 @@ i {
 }
 /* 购买商品 */
 .order-mid .buy-shop {
-  background: coral;
+  /* background: coral; */
   margin: 0.234rem 0;
 }
 .buy-shop .van-card {
