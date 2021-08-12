@@ -1,6 +1,8 @@
 <template>
   <div class="search">
     <div class="search_left">
+      <van-nav-bar left-text="返回" left-arrow @click-left="onClickLeft">
+      </van-nav-bar>
       <van-search
         v-model="value"
         shape="round"
@@ -14,7 +16,7 @@
     </div>
     <!-- 商品信息 -->
     <div>
-      <van-grid :column-num="3">
+      <van-grid :column-num="3" :gutter="10">
         <van-grid-item
           v-for="item in newList"
           :key="item._id"
@@ -22,8 +24,6 @@
         >
           <img :src="item.coverImg" alt="小主人没有照片啊" class="search_img" />
           <p class="search_p">{{ item.name }}</p>
-          <!--     :icon="item.coverImg"
-          :text="item.name" -->
         </van-grid-item>
       </van-grid>
     </div>
@@ -57,6 +57,9 @@ export default {
     },
     godetail(id) {
       this.$router.push({ path: "/detail", query: { id: id } });
+    },
+    onClickLeft() {
+      this.$router.go(-1); // 返回上一页
     },
   },
   created() {
