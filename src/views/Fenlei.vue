@@ -4,7 +4,7 @@
       <!-- 页面头部 -->
       <van-col class="header" span="24">
         <div class="header-fenlei">分类</div>
-        <van-icon size="24" name="search" />
+        <van-icon size="24" name="search" @click="goSearch"/>
       </van-col>
     </van-row>
     <!-- 分类 -->
@@ -71,6 +71,9 @@ export default {
       // 携带商品id到详情页
       this.$router.push({ path: "/detail", query: { id: id } });
     },
+    goSearch(){
+      this.$router.push("/search");
+    }
   },
   created() {
     this.getCategory(this.categoryList[0].name);
