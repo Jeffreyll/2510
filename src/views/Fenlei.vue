@@ -151,8 +151,8 @@ export default {
   flex-wrap: wrap;
   /* justify-content: space-around; */
   align-content: flex-start;
-  /* overflow-x: auto;
-  overflow-y: auto; */
+  overflow-x: auto;
+  overflow-y: auto;
 }
 .right-body .goods {
   height: 2rem;
@@ -184,8 +184,8 @@ export default {
   overflow: hidden;
   color: #777777;
   text-indent: 0.04rem;
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 </style>
