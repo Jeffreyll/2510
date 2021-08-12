@@ -58,6 +58,23 @@
       class="footer"
     >
       <van-checkbox v-model="checked">全选</van-checkbox>
+      <!-- 弹出层 -->
+      <van-popup
+        v-model="show"
+        round
+        position="bottom"
+        :style="{ height: '50%' }"
+        class="tanchu"
+      >
+        <van-address-list
+          v-model="chosenAddressId"
+          :list="addressList"
+          :add-button-text="addbuttontext"
+          @add="onAdd"
+          @edit="onEdit"
+          @click-item="onClickItem"
+        />
+      </van-popup>
     </van-submit-bar>
   </div>
 </template>
@@ -66,12 +83,17 @@
 import { delCart, loadCart, addToCart } from "../../api/cart";
 import { Toast, Dialog } from "vant";
 import { addorder } from "../../api/order";
+import { loadAddress, getAddressById } from "../../api/address";
 
 export default {
   data() {
     return {
       list: [],
-      shwo: false,
+      show: false,
+      chosenAddressId: "1",
+      addressList: [],
+      getAddressByIdList: [],
+      addbuttontext: "",
     };
   },
   computed: {
@@ -115,23 +137,65 @@ export default {
   methods: {
     //提交订单
     async onSubmit() {
-      console.log(this.selectList);
-      const res = await addorder({
-        receiver: "刘永庆",
-        regions: "河南省郑州市二七区",
-        address: "千锋教育",
-        orderDetails: this.selectList,
-      });
-      console.log(res);
-      if (res.data.code == "success") {
-        Toast.success(res.data.message);
-        this.init();
+      this.show = true;
+    },
+    //获取地址列表添加到addressList
+    async getaddress() {
+      const addres = await loadAddress();
+      if (addres.data.addresses.length == 0) {
+        this.addbuttontext = "新增地址";
+      } else {
+        this.addbuttontext = "确认";
+        this.chosenAddressId = addres.data.addresses[0]._id;
+        addres.data.addresses.forEach((item) => {
+          this.addressList.push({
+            id: item._id,
+            name: item.receiver,
+            tel: item.mobile,
+            address: item.regions,
+          });
+        });
       }
+    },
+    //提交订单
+    async onAdd() {
+      this.show = false;
+      if (this.addbuttontext == "确认") {
+        const res = await addorder({
+          receiver: this.getAddressByIdList.receiver,
+          regions: this.getAddressByIdList.regions,
+          address: this.getAddressByIdList.regions,
+          orderDetails: this.selectList,
+        });
+        console.log(res);
+        if (res.data.code == "success") {
+          Toast.success("加入订单成功");
+          this.init();
+          setTimeout(() => {
+            this.$router.push({
+              path: "/order",
+              query: {
+                address: res.data.info.oredr,
+              },
+            });
+          }, 2000);
+        }
+      } else {
+        this.$router.push("/addAddress");
+      }
+    },
+    //点击地址获得id
+    async onClickItem(item) {
+      const getaddres = await getAddressById(item.id);
+      this.getAddressByIdList = getaddres.data;
+    },
+    //修改地址
+    onEdit(item, index) {
+      Toast("编辑地址:" + index);
     },
     //初始化，加载购物车列表
     async init() {
       const res = await loadCart();
-      console.log(res);
       this.list = res.data;
     },
     //返回上一级
@@ -173,6 +237,9 @@ export default {
   },
   created() {
     this.init();
+    if (this.addressList.length == 0) {
+      this.getaddress();
+    }
   },
 };
 </script>
@@ -229,5 +296,8 @@ export default {
 }
 .footer {
   margin-bottom: 1.171rem;
+}
+.tanchu {
+  margin-bottom: 0.98rem;
 }
 </style>
