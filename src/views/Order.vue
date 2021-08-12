@@ -76,6 +76,7 @@ export default {
       orderSingleItemDetails: [], // 订单详情中的多少个商品
       orderPrice: 0, // 此订单总价
       productListOrder: [], // 从提交的订单中获取提交的商品数组
+      name: "",
     };
   },
   computed: {},
@@ -86,8 +87,8 @@ export default {
     async getAddrList() {
       const res = await loadAddress();
       let addrArr = res.data.addresses;
-      console.log("地址列表信息", res);
-      console.log("地址列表数组", addrArr);
+    //   console.log("地址列表信息", res);
+    //   console.log("地址列表数组", addrArr);
       let actArr = [];
       addrArr.forEach((item) => {
         actArr.push({
@@ -97,7 +98,7 @@ export default {
       });
       this.actions = actArr;
       this.actObj = this.actions[0];
-      console.log("地址数据结构", this.actions);
+    //   console.log("地址数据结构", this.actions);
     },
     //   订单列表
     async orderList() {
@@ -108,9 +109,9 @@ export default {
         arr.push({ index: index, id: v._id });
       });
       this.orderIdArr = arr;
-      console.log("订单数组", this.orderIdArr);
+    //   console.log("订单数组", this.orderIdArr);
       this.orderid = this.orderIdArr[0].id;
-      console.log("当前订单id：", this.orderIdArr[0].id);
+      console.log("当前订单id：", this.orderid);
       this.orderItem(); //   订单详情
     },
     //   订单详情
@@ -135,29 +136,37 @@ export default {
     // 提交订单
     onSubmit() {
       console.log("提交订单");
+      //   console.log(this.actObj.name);
+      let strArr = this.actObj.name.split("");
+      strArr.splice(strArr.length - 11, 11);
+      strArr = strArr.join("");
+      console.log(strArr);
+      this.name = strArr;
+      //跳转支付页面;
+      this.$router.push({
+        path: "/cash",
+        query: {
+          price: this.orderPrice,
+        },
+      });
       // 提交订单
       //   const res = await addorder({
-      //     receiver: this.actObj.name,
+      //     receiver: this.name,
       //     regions: this.actObj.subname,
       //     address: "xxx号",
       //     orderDetails: [
       //       {
-      //         quantity: this.value,
+      //         quantity: 1,
       //         product: this.productID,
       //         price: this.productData.price,
       //       },
       //     ],
       //   });
       //   console.log("提交订单信息", res);
-      console.log(this.actObj.name);
-      let strArr = this.actObj.name.split("");
-      strArr.splice(strArr.length - 11, 11);
-      strArr = strArr.join("");
-      console.log(strArr);
     },
   },
   created() {
-    console.log(this.$route.query);
+    // console.log(this.$route.query);
     this.orderList(); //   订单列表
     this.getAddrList(); //地址列表
   },
@@ -171,7 +180,8 @@ export default {
 }
 .order-mid {
   /* background: greenyellow; */
-  min-height: 2rem;
+  /* min-height: 2rem; */
+  height: 12rem;
   margin: 0.234rem 0.234rem 0;
 }
 .order-mid .address {

@@ -146,7 +146,7 @@ export default {
       // 请求
       const { data } = await reqProductsInfo(this.productID);
       this.productData = data;// 商品数据
-      console.log("商品数据",this.productData);
+      // console.log("商品数据",this.productData);
     },
     // 点击返回
     onClickLeft() {
@@ -225,7 +225,7 @@ export default {
     // 获取购物车列表数据
     async getCartList() {
       const res = await loadCart();
-      console.log("购物车列表数据",res.data);
+      // console.log("购物车列表数据",res.data);
       let QuantityNum = 0;
       if (res.data.length > 0) {
         res.data.forEach((item) => {

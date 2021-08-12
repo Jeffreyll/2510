@@ -81,6 +81,17 @@ const routes = [
     component: () => import("../views/Editaddress.vue"),
     meta: { requiresAuth: false },
   },
+  {
+    path: "/cash",
+    name: "cash",
+    component: () => import("../views/Cash.vue"),
+    meta: { requiresAuth: false },
+  },
+
+  {
+    path: "/*",
+    redirect: "/home",
+  },
 ];
 
 const router = new VueRouter({
