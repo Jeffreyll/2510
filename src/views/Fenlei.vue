@@ -169,11 +169,10 @@ export default {
   border-radius: 0.117rem;
   width: 1.33rem;
   height: 1.33rem;
-  border-radius: 0.234rem;
 }
 .goods .div-img img {
   display: block;
-
+  border-radius: 0.234rem;
   width: 100%;
   height: 100%;
 }
