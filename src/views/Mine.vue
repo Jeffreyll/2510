@@ -1,7 +1,7 @@
 <template>
   <div class="mine">
     <div class="wrapper">
-      <van-cell class="login" ref="log" :to="userInfo.to" @click="golog">
+      <van-cell class="login" ref="log" :to="userInfo.to">
         <template #title>
           <img
             style="border-radius=50%"
@@ -162,14 +162,7 @@ export default {
           "url('https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/common/bg_page_header.png')";
       }
     },
-    //登录
-    golog() {
-      if (islogined) {
-        this.$router.push("/logout");
-      } else {
-        this.$router.push("/login");
-      }
-    },
+
     onChange(index) {
       this.showList = false;
       this.chosenCoupon = index;
@@ -186,7 +179,7 @@ export default {
 </script>
 
 <style scoped>
-#app {
+#aaa {
   background: rgb(243, 243, 243);
 }
 .login {
