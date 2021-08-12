@@ -37,6 +37,7 @@ export default {
   methods: {
     //保存地址
     async onSave(content) {
+      console.log(content);
       const regions =
         content.province +
         content.city +

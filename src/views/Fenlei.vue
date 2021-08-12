@@ -141,6 +141,7 @@ export default {
 }
 .right .right-body {
   width: 5.3rem;
+
   border-radius: 8px;
   background: white;
   margin-top: 0.2rem;
@@ -148,8 +149,8 @@ export default {
   flex-wrap: wrap;
   /* justify-content: space-around; */
   align-content: flex-start;
-  overflow-x: auto;
-  overflow-y: auto;
+  /* overflow-x: auto;
+  overflow-y: auto; */
 }
 .right-body .goods {
   height: 2rem;
@@ -166,6 +167,7 @@ export default {
   display: block;
   width: 1.33rem;
   height: 1.33rem;
+  border-radius: 0.234rem;
 }
 .goods p {
   /* background: wheat; */
@@ -175,5 +177,8 @@ export default {
   overflow: hidden;
   color: #777777;
   text-indent: 0.04rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
