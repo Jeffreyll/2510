@@ -19,14 +19,15 @@
 </template>
 
 <script>
-import {getOrderlist,getOrderItem} from "../../api/order"
+import { getOrderlist, getOrderItem } from "../../api/order";
 // import { Toast } from 'vant';
 export default {
   components: {},
   data() {
     return {
-        id:"6114c5c047886c36e87fcd69",
-        orderIdArr:[],
+      orderid: "",
+      orderIdArr: [], // 订单数组
+      orderSingleItem: {}, // 订单详情
     };
   },
   computed: {},
@@ -34,27 +35,32 @@ export default {
 
   methods: {
     //   订单列表
-    async orderList(){
-        const res = await getOrderlist({per:1000,});
-        console.log("订单列表", res.data.orders);
-        // res.data.orders.forEach(v => {
-        //     this.orderIdArr.push({})
-        // });
+    async orderList() {
+      const res = await getOrderlist({ per: 1000 });
+      console.log("订单列表", res.data.orders);
+      let arr = [];
+      res.data.orders.forEach((v, index) => {
+        arr.push({ index: index, id: v._id });
+      });
+      this.orderIdArr = arr;
+      console.log("订单数组", this.orderIdArr);
+      this.orderid = this.orderIdArr[0].id;
+      console.log("当前订单id：", this.orderIdArr[0].id);
+      this.orderItem(); //   订单详情
     },
     //   订单详情
-    async orderItem(){
-        const res = await getOrderItem(this.id);
-        console.log("订单详情",res.data);
+    async orderItem() {
+      const res = await getOrderItem(this.orderid);
+      console.log("订单详情", res.data);
     },
     onClickLeft() {
       //   Toast("返回");
-      console.log(111);
       this.$router.go(-1); // 返回上一页
     },
   },
   created() {
-      this.orderList();
-    //   this.orderItem();
+    this.orderList(); //   订单列表
+    
   },
   mounted() {},
 };
