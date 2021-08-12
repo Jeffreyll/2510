@@ -28,6 +28,12 @@ const routes = [
     meta: { requiresAuth: false, isShow: true },
   },
   {
+    path: "/search",
+    name: "Search",
+    component: () => import("../views/Search.vue"),
+    meta: { requiresAuth: false, isShow: true },
+  },
+  {
     path: "/mine",
     name: "Mine",
     component: () => import("../views/Mine.vue"),
@@ -49,6 +55,12 @@ const routes = [
     path: "/detail",
     name: "Detail",
     component: () => import("../views/Detail.vue"),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/order",
+    name: "Order",
+    component: () => import("../views/Order.vue"),
     meta: { requiresAuth: false },
   },
   {
