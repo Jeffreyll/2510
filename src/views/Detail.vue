@@ -124,6 +124,7 @@
 import { Toast } from "vant";
 import { reqProductsInfo } from "../../api/products";
 import { addToCart, loadCart } from "../../api/cart";
+import { addorder } from "../../api/order";
 // import { get } from '../../utils/request';
 export default {
   data() {
@@ -133,7 +134,7 @@ export default {
       panelBtnShow: true,
       show: false,
       productID: "",
-      productData: {},
+      productData: {},// 商品数据
       proQuantity: 0, // 购物车列表加了多少件商品
     };
   },
@@ -144,8 +145,8 @@ export default {
       this.productID = this.$route.query.id;
       // 请求
       const { data } = await reqProductsInfo(this.productID);
-      this.productData = data;
-      console.log(this.productData);
+      this.productData = data;// 商品数据
+      console.log("商品数据",this.productData);
     },
     // 点击返回
     onClickLeft() {
@@ -195,18 +196,36 @@ export default {
       this.show = true;
       this.panelBtnShow = false; // 弹出面板点击确定按钮加入购车
     },
+    // 点击确定=》提交订单
     buyOrder() {
       console.log(this.value);
       console.log("商品id", this.productID);
+      this.addOrder(); // 提交订单
       this.$router.push({
         path: "/order",
         query: { id: this.productID, num: this.value },
       });
     },
+    // 提交订单
+    async addOrder() {
+      const res = await addorder({
+        receiver: "xxx",
+        regions: "xxx省xxx市xxx县",
+        address: "xxx号",
+        orderDetails: [
+          {
+            quantity: this.value,
+            product: this.productID,
+            price: this.productData.price,
+          },
+        ],
+      });
+      console.log("提交订单信息",res);
+    },
     // 获取购物车列表数据
     async getCartList() {
       const res = await loadCart();
-      console.log(res.data);
+      console.log("购物车列表数据",res.data);
       let QuantityNum = 0;
       if (res.data.length > 0) {
         res.data.forEach((item) => {

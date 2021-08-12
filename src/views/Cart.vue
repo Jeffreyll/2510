@@ -25,7 +25,7 @@
               <p>{{ item.product.name }}</p>
               <div class="cart_price">
                 <div class="cart_price_left">
-                  <span>{{ item.product.price }}</span>
+                  <span>￥{{ item.product.price }}</span>
                 </div>
                 <div class="cart_price_right">
                   <van-stepper
@@ -248,6 +248,7 @@ export default {
   padding: 10px 5px;
   display: flex;
   justify-content: space-around;
+  background: #f7f7f7;
 }
 .cart_check {
   padding: 0 3px;
@@ -259,6 +260,8 @@ export default {
 }
 .cart_shop {
   display: flex;
+  background: #ffffff;
+  border-radius: 20px;
 }
 .cart_shop img {
   width: 100px;
