@@ -60,7 +60,6 @@ export default {
   },
   created() {
     this.orderList(); //   订单列表
-    
   },
   mounted() {},
 };
