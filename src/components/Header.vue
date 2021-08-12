@@ -2,10 +2,11 @@
   <div class="homeHeader">
     <img :src="img" class="logo" />
     <van-search
-      style="background-color:#845d32;width:260px"
+      style="background-color: #845d32; width: 260px"
       v-model="value"
       placeholder="搜一搜"
       shape="round"
+      @click="onSearch"
     />
   </div>
 </template>
@@ -16,10 +17,14 @@ export default {
   components: {},
   data() {
     return {
-      img:
-        "https://img.youpin.mi-img.com/static/weex_images/v1/m/navi_title_v6.png",
+      img: "https://img.youpin.mi-img.com/static/weex_images/v1/m/navi_title_v6.png",
       value: "",
     };
+  },
+  methods: {
+    onSearch() {
+      this.$router.push("/search");
+    },
   },
 };
 </script>
