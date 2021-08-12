@@ -28,6 +28,12 @@ const routes = [
     meta: { requiresAuth: false, isShow: true },
   },
   {
+    path: "/search",
+    name: "Search",
+    component: () => import("../views/Search.vue"),
+    meta: { requiresAuth: false, isShow: true },
+  },
+  {
     path: "/mine",
     name: "Mine",
     component: () => import("../views/Mine.vue"),
