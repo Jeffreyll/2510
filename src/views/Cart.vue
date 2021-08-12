@@ -9,26 +9,44 @@
       <template #right> <van-icon name="search" size="20" /> </template
     ></van-nav-bar>
     <div class="cart_list" v-for="item in list" :key="item.product._id">
-      <!-- <van-checkbox v-model="item.checked" class="cart_check"></van-checkbox> -->
-      <van-swipe-cell>
-        <van-card
-          :num="item.quantity"
-          :price="item.product.price"
-          :title="item.product.name"
-          class="goods-card"
-          :thumb="item.product.coverImg"
-        >
-        </van-card>
-        <template #right>
-          <van-button
-            square
-            text="删除"
-            type="danger"
-            class="delete-button"
-            @click="del(item._id)"
-          />
-        </template>
-      </van-swipe-cell>
+      <div class="cart_check">
+        <van-checkbox v-model="item.checked"></van-checkbox>
+      </div>
+      <div class="cart_swipe">
+        <van-swipe-cell>
+          <div class="cart_shop">
+            <div>
+              <img :src="item.product.coverImg" alt="" />
+            </div>
+            <div class="cart_right">
+              <p>{{ item.product.name }}</p>
+              <div class="cart_price">
+                <div class="cart_price_left">
+                  <span>{{ item.product.price }}</span>
+                </div>
+                <div class="cart_price_right">
+                  <van-stepper
+                    v-model="item.quantity"
+                    theme="round"
+                    button-size="22"
+                    disable-input
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div></div>
+          <template #right>
+            <van-button
+              square
+              text="删除"
+              type="danger"
+              class="delete-button"
+              @click="del(item._id)"
+            />
+          </template>
+        </van-swipe-cell>
+      </div>
     </div>
     <van-submit-bar
       :price="sumPrice * 100"
@@ -154,8 +172,50 @@ export default {
   },
 };
 </script>
-
 <style scoped>
+.cart_list {
+  padding: 10px 5px;
+  display: flex;
+  justify-content: space-around;
+}
+.cart_check {
+  padding: 0 3px;
+  display: flex;
+  align-items: center;
+}
+.cart_swipe {
+  flex-grow: 1;
+}
+.cart_shop {
+  display: flex;
+}
+.cart_shop img {
+  width: 100px;
+  height: 100px;
+}
+.cart_right {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cart_right p {
+  margin: 5px 0 0 5px;
+}
+.cart_price {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.cart_price_left {
+  margin-left: 5px;
+  color: red;
+  align-self: flex-end;
+  font-size: 18px;
+}
+.cart_price_right {
+  margin-right: 5px;
+  align-self: flex-end;
+}
 .goods-card {
   margin: 0;
   background-color: white;
