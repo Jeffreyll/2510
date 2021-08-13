@@ -180,10 +180,12 @@ export default {
     // 未收藏图标显示
     collectIconShow() {
       this.collectIcon = false;
+      Toast.success('收藏成功！');
     },
     // 点击不收藏
     collectIconNo() {
       this.collectIcon = true;
+      Toast.fail('取消收藏！');
     },
     // 点击加入购物车弹出面板
     alertPanel() {

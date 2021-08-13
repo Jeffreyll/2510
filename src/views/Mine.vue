@@ -28,8 +28,10 @@
     ></van-cell>
     <div class="focus">
       <div v-for="(item, i) in focusList" :key="i" class="focusList">
-        <img :src="item.img" alt="" />
-        <p>{{ item.name }}</p>
+        <van-badge :content="5">
+          <img :src="item.img" alt="" />
+          <p>{{ item.name }}</p>
+        </van-badge>
       </div>
     </div>
     <van-cell
@@ -54,7 +56,7 @@
       v-model="showList"
       round
       position="bottom"
-      style="height: 90%; padding-top: 4px;"
+      style="height: 90%; padding-top: 4px"
     >
       <van-coupon-list
         :coupons="coupons"
@@ -90,63 +92,52 @@ export default {
         avatar:
           "https://img.youpin.mi-img.com/shopcenter/7dhur6i77hg_11350267611625208274363.png",
         userName: "请登录",
-        icon:
-          "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
+        icon: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
         to: "login",
       },
       focusList: [
         {
-          img:
-            "https://img.youpin.mi-img.com/shopcenter/1su4kcv21eg_22212270231600948691418.png",
+          img: "https://img.youpin.mi-img.com/shopcenter/1su4kcv21eg_22212270231600948691418.png",
           name: "待付款",
         },
         {
-          img:
-            "https://img.youpin.mi-img.com/shopcenter/2rsi345c8a_22212270231600948691450.png",
+          img: "https://img.youpin.mi-img.com/shopcenter/2rsi345c8a_22212270231600948691450.png",
           name: "待收货",
         },
         {
-          img:
-            "https://img.youpin.mi-img.com/shopcenter/n9q7tuhs6ao_22212270231600948691455.png",
+          img: "https://img.youpin.mi-img.com/shopcenter/n9q7tuhs6ao_22212270231600948691455.png",
           name: "评价",
         },
         {
-          img:
-            "https://img.youpin.mi-img.com/shopcenter/q69ib1u9teg_22212270231600948691439.png",
+          img: "https://img.youpin.mi-img.com/shopcenter/q69ib1u9teg_22212270231600948691439.png",
           name: "退款/售后",
         },
       ],
       tabList: [
         {
-          icon:
-            "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_myassets.png",
+          icon: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_myassets.png",
           name: "我的权益",
         },
 
         {
-          icon:
-            "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_collection.png",
+          icon: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_collection.png",
           name: "我的收藏",
         },
         {
-          icon:
-            "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_address.png",
+          icon: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_address.png",
           name: "地址管理",
           to: "address",
         },
         {
-          icon:
-            "https://shop.io.mi-img.com/app/shop/img?id=shop_0556651f21ebb90fd2094de25cfeeeff.png&w=114&h=114",
+          icon: "https://shop.io.mi-img.com/app/shop/img?id=shop_0556651f21ebb90fd2094de25cfeeeff.png&w=114&h=114",
           name: "资质证照",
         },
         {
-          icon:
-            "https://shop.io.mi-img.com/app/shop/img?id=shop_eec55569c325c1641e1cd47ba572b83b.png&w=114&h=114",
+          icon: "https://shop.io.mi-img.com/app/shop/img?id=shop_eec55569c325c1641e1cd47ba572b83b.png&w=114&h=114",
           name: "协议规则",
         },
         {
-          icon:
-            "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_feedback.png",
+          icon: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/ucenter/ucenter_icon_feedback.png",
           name: "帮助与反馈",
         },
       ],
@@ -171,8 +162,7 @@ export default {
           avatar:
             "https://img.youpin.mi-img.com/shopcenter/7dhur6i77hg_11350267611625208274363.png",
           userName: "请登录",
-          icon:
-            "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
+          icon: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png",
           to: "login",
         };
         this.$refs.log.style.background =
