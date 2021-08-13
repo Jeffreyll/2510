@@ -284,8 +284,6 @@ export default {
   width: 100%;
   height: 7.5rem;
 }
-.goods-info {
-}
 .goods-info .goods-price {
   height: 1.244rem;
   display: flex;

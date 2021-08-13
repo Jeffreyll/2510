@@ -60,9 +60,6 @@
 <script>
 import { getOrderlist, getOrderItem } from "../../api/order";
 import { loadAddress } from "../../api/address";
-// import { addorder } from "../../api/order";
-// import { get } from '../../utils/request';
-// import { Toast } from 'vant';
 export default {
   components: {},
   data() {
@@ -125,7 +122,6 @@ export default {
       console.log("此订单总价", this.orderPrice);
     },
     onClickLeft() {
-      //   Toast("返回");
       this.$router.go(-1); // 返回上一页
     },
     // 面板回调
@@ -149,24 +145,23 @@ export default {
           price: this.orderPrice,
         },
       });
-      // 提交订单
-      //   const res = await addorder({
-      //     receiver: this.name,
-      //     regions: this.actObj.subname,
-      //     address: "xxx号",
-      //     orderDetails: [
-      //       {
-      //         quantity: 1,
-      //         product: this.productID,
-      //         price: this.productData.price,
-      //       },
-      //     ],
-      //   });
-      //   console.log("提交订单信息", res);
+      /* 提交订单
+        const res = await addorder({
+          receiver: this.name,
+          regions: this.actObj.subname,
+          address: "xxx号",
+          orderDetails: [
+            {
+              quantity: 1,
+              product: this.productID,
+              price: this.productData.price,
+            },
+          ],
+        });
+        console.log("提交订单信息", res); */
     },
   },
   created() {
-    // console.log(this.$route.query);
     this.orderList(); //   订单列表
     this.getAddrList(); //地址列表
   },

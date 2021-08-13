@@ -87,6 +87,18 @@ const routes = [
     component: () => import("../views/Cash.vue"),
     meta: { requiresAuth: false },
   },
+  {
+    path: "/zhifubao",
+    name: "zhifubao",
+    component: () => import("../views/Zhifubao.vue"),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/weixin",
+    name: "weixin",
+    component: () => import("../views/Weixin.vue"),
+    meta: { requiresAuth: false },
+  },
 
   {
     path: "/*",
