@@ -87,8 +87,8 @@ export default {
     async getAddrList() {
       const res = await loadAddress();
       let addrArr = res.data.addresses;
-    //   console.log("地址列表信息", res);
-    //   console.log("地址列表数组", addrArr);
+      //   console.log("地址列表信息", res);
+      //   console.log("地址列表数组", addrArr);
       let actArr = [];
       addrArr.forEach((item) => {
         actArr.push({
@@ -98,7 +98,7 @@ export default {
       });
       this.actions = actArr;
       this.actObj = this.actions[0];
-    //   console.log("地址数据结构", this.actions);
+      //   console.log("地址数据结构", this.actions);
     },
     //   订单列表
     async orderList() {
@@ -109,7 +109,7 @@ export default {
         arr.push({ index: index, id: v._id });
       });
       this.orderIdArr = arr;
-    //   console.log("订单数组", this.orderIdArr);
+      //   console.log("订单数组", this.orderIdArr);
       this.orderid = this.orderIdArr[0].id;
       console.log("当前订单id：", this.orderid);
       this.orderItem(); //   订单详情

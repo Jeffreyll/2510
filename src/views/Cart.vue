@@ -2,12 +2,22 @@
   <div class="cart">
     <van-nav-bar
       title="购物车"
-      left-text="返回"
       left-arrow
       @click-left="onClickLeft"
+      class="nav"
     >
-      <template #right> <van-icon name="search" size="20" /> </template
-    ></van-nav-bar>
+    </van-nav-bar>
+    <van-empty
+      class="custom-image"
+      image="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/no_result/no_result_cart2.png"
+      image-size="2rem"
+      description="目前没有添加商品哦~"
+      v-show="flag"
+    >
+      <van-button @click="gohome" round class="bottom-button" plain
+        >去首页逛逛</van-button
+      >
+    </van-empty>
     <div class="cart_list" v-for="item in list" :key="item.product._id">
       <!--    <div class="cart_check">
         <van-checkbox v-model="item.checked"></van-checkbox>
@@ -56,6 +66,7 @@
       tip-icon="info-o"
       @submit="onSubmit"
       class="footer"
+      v-if="!flag"
     >
       <van-checkbox v-model="checked">全选</van-checkbox>
       <!-- 弹出层 -->
@@ -94,6 +105,7 @@ export default {
       addressList: [],
       getAddressByIdList: [],
       addbuttontext: "",
+      flag: false,
     };
   },
   computed: {
@@ -135,9 +147,24 @@ export default {
     },
   },
   methods: {
+    //初始化，加载购物车列表
+    async init() {
+      const res = await loadCart();
+      console.log(res);
+      this.list = res.data;
+      if (res.data.length == 0) {
+        this.flag = true;
+      } else {
+        this.flag = false;
+      }
+    },
     //提交订单
     async onSubmit() {
       this.show = true;
+    },
+    //回到首页
+    gohome() {
+      this.$router.push("/");
     },
     //获取地址列表添加到addressList
     async getaddress() {
@@ -167,17 +194,17 @@ export default {
           address: this.getAddressByIdList.regions,
           orderDetails: this.selectList,
         });
-        if (res.data.code == "success") {
-          Toast.success("加入订单成功");
+        if (res.data.code == "success" && res.data.info.order.price != 0) {
           this.init();
-          setTimeout(() => {
-            this.$router.push({
-              path: "/order",
-              query: {
-                address: res.data.info.order,
-              },
-            });
-          }, 2000);
+          this.$router.push({
+            path: "/cash",
+            query: {
+              address: res.data.info.order,
+              price: res.data.info.order.price,
+            },
+          });
+        } else {
+          Toast.fail("至少选择一件商品");
         }
       } else {
         this.$router.push("/addAddress");
@@ -192,11 +219,7 @@ export default {
     onEdit(item, index) {
       Toast("编辑地址:" + index);
     },
-    //初始化，加载购物车列表
-    async init() {
-      const res = await loadCart();
-      this.list = res.data;
-    },
+
     //返回上一级
     onClickLeft() {
       this.$router.go(-1);
@@ -243,11 +266,31 @@ export default {
 };
 </script>
 <style scoped>
+.nav {
+  height: 1.7rem;
+  background: url("https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/common/bg_page_header.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+::v-deep .van-icon {
+  color: #fff;
+}
+::v-deep .van-nav-bar__title {
+  color: white;
+  font-size: 0.35rem;
+}
+.bottom-button {
+  width: 2rem;
+  height: 0.7rem;
+  border-color: rgb(102, 102, 102);
+  font-size: 0.23rem;
+  color: rgb(102, 102, 102);
+}
 .cart_list {
   padding: 10px 5px;
   display: flex;
   justify-content: space-around;
-  background: #f7f7f7;
 }
 .cart_check {
   padding: 0 3px;

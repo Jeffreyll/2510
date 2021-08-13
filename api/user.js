@@ -6,5 +6,5 @@ export const regApi = (user) => post("/api/v1/auth/reg", user);
 export const logApi = (user) => post("/api/v1/auth/login", user);
 //获取用户信息
 export const loadUser = (params) => get("/api/v1/users/info", params);
-//上传头像
-export const upload = (file) => post("/api/v1/common/file_upload", file);
+//修改用户信息
+export const upload = (file) => post("/api/v1/users/change_info", file);
