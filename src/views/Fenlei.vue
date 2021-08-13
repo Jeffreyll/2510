@@ -89,8 +89,8 @@ export default {
   flex-direction: column;
 }
 .about .van-row .header {
-  height: 38.5px;
-  padding: 0 12px;
+  height: 0.902rem;
+  padding: 0 0.281rem;
   display: flex;
   align-items: center;
   background: white;
@@ -98,11 +98,11 @@ export default {
 }
 
 .about .van-row .header .header-fenlei {
-  height: 24px;
+  height: 0.562rem;
   flex: 1;
   color: rgb(51, 51, 51);
-  text-indent: 132px;
-  font-size: 16px;
+  text-indent: 3.093rem;
+  font-size: 0.375rem;
 }
 
 .middle-wrap {
