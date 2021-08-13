@@ -20,7 +20,12 @@
         </template>
       </van-cell>
     </div>
-    <van-cell title="我的订单" is-link class="order"></van-cell>
+    <van-cell
+      title="我的订单"
+      is-link
+      class="order"
+      @click="goorder"
+    ></van-cell>
     <div class="focus">
       <div v-for="(item, i) in focusList" :key="i" class="focusList">
         <img :src="item.img" alt="" />
@@ -198,11 +203,12 @@ export default {
     async afterRead(file) {
       // 此时可以自行将文件上传至服务器
       this.userInfo.avatar = file.content;
-      // let param = new FormData(); // 创建form对象
-      // param.set("img", file.file); //对应后台接收图片名
-      // console.log(param);
-      const res = await upload(file);
-      console.log(res);
+      const params = { avatar: file.content, nickName: "" };
+      await upload(params);
+    },
+    //我的订单
+    goorder() {
+      this.$router.push("/order");
     },
     onChange(index) {
       this.showList = false;
