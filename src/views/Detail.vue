@@ -10,9 +10,15 @@
       @click-right="onClickRight"
     >
       <template #right>
-        <van-icon name="more" size="20" />
+        <van-icon name="share-o" size="1.6em" />
       </template>
     </van-nav-bar>
+    <!-- 立即分享给好友 -->
+    <van-share-sheet
+      v-model="showShare"
+      title="立即分享给好友"
+      :options="options"
+    />
     <!-- 页面中部 -->
     <div class="detail-main">
       <img class="goods-img" :src="productData.coverImg" alt="" />
@@ -134,8 +140,23 @@ export default {
       panelBtnShow: true,
       show: false,
       productID: "",
-      productData: {},// 商品数据
+      productData: {}, // 商品数据
       proQuantity: 0, // 购物车列表加了多少件商品
+      showShare: false, // 分向面板
+      options: [
+        [
+          { name: "微信", icon: "wechat" },
+          { name: "朋友圈", icon: "wechat-moments" },
+          { name: "微博", icon: "weibo" },
+          { name: "QQ", icon: "qq" },
+        ],
+        [
+          { name: "复制链接", icon: "link" },
+          { name: "分享海报", icon: "poster" },
+          { name: "二维码", icon: "qrcode" },
+          { name: "小程序码", icon: "weapp-qrcode" },
+        ],
+      ],
     };
   },
   methods: {
@@ -145,7 +166,7 @@ export default {
       this.productID = this.$route.query.id;
       // 请求
       const { data } = await reqProductsInfo(this.productID);
-      this.productData = data;// 商品数据
+      this.productData = data; // 商品数据
       // console.log("商品数据",this.productData);
     },
     // 点击返回
@@ -153,7 +174,8 @@ export default {
       this.$router.go(-1); // 返回上一页
     },
     onClickRight() {
-      Toast("按钮");
+      // Toast("按钮");
+      this.showShare = true;
     },
     // 未收藏图标显示
     collectIconShow() {
@@ -220,7 +242,7 @@ export default {
           },
         ],
       });
-      console.log("提交订单信息",res);
+      console.log("提交订单信息", res);
     },
     // 获取购物车列表数据
     async getCartList() {
