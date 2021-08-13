@@ -16,7 +16,7 @@
     </div>
     <!-- 商品信息 -->
     <div>
-      <van-grid :column-num="3" :gutter="10">
+      <van-grid :column-num="3">
         <van-grid-item
           v-for="item in newList"
           :key="item._id"
@@ -29,7 +29,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { reqProducts } from "../../api/products";
 export default {
@@ -43,10 +42,8 @@ export default {
   methods: {
     async reqSearch() {
       const result = await reqProducts({ per: 130 });
-      console.log(result);
       this.products = result.data.products;
     },
-    //
     onSearch(value) {
       value = this.value;
       return (this.newList = this.products.filter((item) => {
@@ -77,10 +74,7 @@ export default {
   border-radius: 16px;
 }
 .search_img {
-  width: 95px;
-  height: 90px;
-}
-.search_p {
-  margin-top: 15px;
+  width: 0.95rem;
+  height: 0.95rem;
 }
 </style>
