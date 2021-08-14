@@ -108,7 +108,7 @@ export default {
       this.orderIdArr = arr;
       //   console.log("订单数组", this.orderIdArr);
       this.orderid = this.orderIdArr[0].id;
-      console.log("当前订单id：", this.orderid);
+      // console.log("当前订单id：", this.orderid);
       this.orderItem(); //   订单详情
     },
     //   订单详情
@@ -117,9 +117,9 @@ export default {
       this.orderSingleItem = res.data;
       this.orderSingleItemDetails = res.data.details;
       this.orderPrice = res.data.order.price;
-      console.log("订单详情", this.orderSingleItem);
-      console.log("订单详情中的多少个商品", this.orderSingleItemDetails);
-      console.log("此订单总价", this.orderPrice);
+      // console.log("订单详情", this.orderSingleItem);
+      // console.log("订单详情中的多少个商品", this.orderSingleItemDetails);
+      // console.log("此订单总价", this.orderPrice);
     },
     onClickLeft() {
       this.$router.go(-1); // 返回上一页
