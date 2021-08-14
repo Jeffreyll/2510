@@ -221,8 +221,10 @@ export default {
         }
         this.getCartList(); // 加载购物车数据
       } else {
-        Toast.success("请登录账户！");
-        this.$router.push("/login");
+        Toast.fail("请先登录！");
+        setTimeout(() => {
+          this.$router.push("/login");
+        }, 1000);
       }
     },
     // 立即购买

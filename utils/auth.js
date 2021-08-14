@@ -3,6 +3,8 @@ import { TOKEN } from "./tools";
 export const islogined = () => {
   if (localStorage.getItem("token")) {
     return true;
+  } else {
+    return false;
   }
 };
 // 生成token
