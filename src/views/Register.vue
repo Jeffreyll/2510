@@ -89,7 +89,11 @@ export default {
     //注册
     async onSubmit(values) {
       if (this.checked == true) {
-        const res = await regApi(values);
+        const res = await regApi({
+          ...values,
+          avatar:
+            "https://img.youpin.mi-img.com/shopcenter/7dhur6i77hg_11350267611625208274363.png",
+        });
         if (res.data.code == "success") {
           Toast.success("注册成功！");
           this.$router.push("/login");
