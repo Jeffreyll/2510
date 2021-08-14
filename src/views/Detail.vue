@@ -131,6 +131,7 @@ import { Toast } from "vant";
 import { reqProductsInfo } from "../../api/products";
 import { addToCart, loadCart } from "../../api/cart";
 import { addorder } from "../../api/order";
+import { islogined } from "../../utils/auth";
 // import { get } from '../../utils/request';
 export default {
   data() {
@@ -180,15 +181,17 @@ export default {
     // 未收藏图标显示
     collectIconShow() {
       this.collectIcon = false;
-      Toast.success('收藏成功！');
+      Toast.success("收藏成功！");
     },
     // 点击不收藏
     collectIconNo() {
       this.collectIcon = true;
-      Toast.fail('取消收藏！');
+      Toast.fail("取消收藏！");
     },
     // 点击加入购物车弹出面板
     alertPanel() {
+      console.log(islogined);
+
       this.show = true;
     },
     // 点击加入购物车弹出面板关闭
@@ -207,13 +210,20 @@ export default {
     },
     // 加入购物车
     async addCart() {
-      const res = await addToCart(this.productID, this.value);
-      // console.log(res);
-      if (res.data.code === "success") {
-        Toast.success("加入购物车成功！");
-        this.show = false;
+      let isLogined = localStorage.getItem("token");
+      console.log(isLogined);
+      if (isLogined) {
+        const res = await addToCart(this.productID, this.value);
+        // console.log(res);
+        if (res.data.code === "success") {
+          Toast.success("加入购物车成功！");
+          this.show = false;
+        }
+        this.getCartList(); // 加载购物车数据
+      } else {
+        Toast.success("请登录账户！");
+        this.$router.push("/login");
       }
-      this.getCartList(); // 加载购物车数据
     },
     // 立即购买
     buyNow() {
@@ -224,11 +234,18 @@ export default {
     buyOrder() {
       console.log(this.value);
       console.log("商品id", this.productID);
-      this.addOrder(); // 提交订单
-      this.$router.push({
-        path: "/order",
-        query: { id: this.productID, num: this.value },
-      });
+      let isLogined = localStorage.getItem("token");
+      console.log(isLogined);
+      if (isLogined) {
+        this.addOrder(); // 提交订单
+        this.$router.push({
+          path: "/order",
+          query: { id: this.productID, num: this.value },
+        });
+      } else {
+        Toast.success("请登录账户！");
+        this.$router.push("/login");
+      }
     },
     // 提交订单
     async addOrder() {
